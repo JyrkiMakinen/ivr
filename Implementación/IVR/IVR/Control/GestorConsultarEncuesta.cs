@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IVR.Boundary;
 
 namespace IVR.Control
-{
-    using IVR.Entity;
+{   
 
     public class GestorConsultarEncuesta
     {
+        public DateTime fechaInicioPeriodo { get; set; }
+        public DateTime fechaFinPeriodo { get; set; }
+        private PantallaConsultarEncuesta pantallaConsultarEncuesta;
 
+        public GestorConsultarEncuesta() {
+
+            this.pantallaConsultarEncuesta = new PantallaConsultarEncuesta();
+        }
 
         public void opcionConsultarEncuesta() {
 
@@ -18,7 +25,8 @@ namespace IVR.Control
 
         public void tomarPeriodo()
         {
-
+            this.fechaInicioPeriodo = pantallaConsultarEncuesta.getFechaInicio();
+            this.fechaFinPeriodo = pantallaConsultarEncuesta.getFechaFinPeriodo();
         }
 
 
@@ -26,7 +34,7 @@ namespace IVR.Control
 
         }
 
-        public tomarSeleccionLlamada() {
+        public void tomarSeleccionLlamada() {
 
         }
 
