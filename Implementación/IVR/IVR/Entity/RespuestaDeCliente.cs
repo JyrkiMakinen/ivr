@@ -1,8 +1,13 @@
-public class RespuestaDeCliente {
+namespace IVR.Entity
+{
+    public class RespuestaDeCliente
+    {
 
-    private RespuestaPosible respuestaPosible;
+        private RespuestaPosible respuestaPosible;
 
-    public RespuestaDeCliente(RespuestaPosible respuestaPosible) {
-        this.respuestaPosible = respuestaPosible;
+        public RespuestaDeCliente(RespuestaPosible respuestaPosible)
+        {
+            this.respuestaPosible = respuestaPosible;
+        }
     }
 }

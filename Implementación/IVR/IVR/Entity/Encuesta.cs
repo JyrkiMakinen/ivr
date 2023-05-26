@@ -1,9 +1,14 @@
-public class Encuesta {
+namespace IVR.Entity
+{
+    public class Encuesta
+    {
 
-    private string descripcionEncuesta { get; set; }
+        private string descripcionEncuesta { get; set; }
 
-    public Encuesta(string descripcion) {
-        this.descripcionEncuesta = descripcion;
-    } 
+        public Encuesta(string descripcion)
+        {
+            this.descripcionEncuesta = descripcion;
+        }
 
+    }
 }

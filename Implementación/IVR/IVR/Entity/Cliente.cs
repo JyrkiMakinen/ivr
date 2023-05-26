@@ -1,5 +1,8 @@
-public class Cliente {
+namespace IVR.Entity
+{
+    public class Cliente
+    {
+        private string nombre { get; set; }
 
-    private string nombre { get; set; }
-
+    }
 }
