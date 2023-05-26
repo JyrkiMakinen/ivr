@@ -1,5 +1,4 @@
 using IVR.Entity;
-using IVR;
 
 namespace IVR.Datos
 {

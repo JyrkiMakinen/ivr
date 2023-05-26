@@ -4,6 +4,7 @@ namespace IVR.Entity
     {
 
         private DateTime fechaHoraInicio { get; set; }
+        private DateTime fechaHoraFin { get; set; }
         private Estado estado { get; set; }
 
         public CambioEstado(DateTime fechaHoraInicio, Estado estado)
@@ -14,17 +15,18 @@ namespace IVR.Entity
 
         public bool esEstadoInicial()
         {
-            // Implementación del método tieneEncuestasRespondidas
-            // Aquí puedes agregar la lógica que determine si la llamada tiene encuestas respondidas
-            // Por ahora, el método está vacío y siempre devuelve false
+            if (estado.esIniciada()) {
+                return true;
+            }
             return false;
         }
 
         public bool esUltimoEstado()
         {
-
+            if (fechaHoraFin == null) {
+                return true;
+            }
             return false;
         }
-
     }
 }

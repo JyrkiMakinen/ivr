@@ -9,5 +9,9 @@ namespace IVR.Entity
         {
             this.respuestaPosible = respuestaPosible;
         }
+
+        public void obtenerDescripcionRta() {
+
+        }
     }
 }

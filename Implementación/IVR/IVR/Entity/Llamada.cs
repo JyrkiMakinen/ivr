@@ -2,13 +2,16 @@ namespace IVR.Entity
 {
     public class Llamada
     {
-        private CambioDeEstado cambioDeEstado;
+        private List<CambioDeEstado> cambioDeEstado;
+        private CambioDeEstado ultimoCambioEstado;
         private Cliente cliente;
 
         public Llamada(Cliente cliente)
         {
             Estado estado = new Estado("Iniciada");
-            cambioDeEstado = new CambioDeEstado(new DateTime(), estado);
+            CambioDeEstado cambioDeEstado1 = new CambioDeEstado(new DateTime(), estado);
+
+            cambioDeEstado = new List<CambioDeEstado> { cambioDeEstado1 };
             this.cliente = cliente;
         }
 
@@ -20,11 +23,17 @@ namespace IVR.Entity
             return false;
         }
 
-        public bool esDePeriodo()
+        public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo)
         {
-            // Implementación del método esDePeriodo
-            // Aquí puedes agregar la lógica que determine si la llamada está dentro de un período específico
-            // Por ahora, el método está vacío y siempre devuelve false
+            
+            for (int i = 0; i < cambioDeEstado.Count(); i++) {
+                if (cambioDeEstado[i].esEstadoInicial()) {
+                    if (cambioDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambioDeEstado[i].getFechaHoraInicio()) {
+                        return true;
+                    }
+                }
+            }
+            
             return false;
         }
 
@@ -35,17 +44,22 @@ namespace IVR.Entity
 
         public string getEstadoActual()
         {
-            Estado esUltimoEstado = cambioDeEstado.esUltimoEstado();
-            return esUltimoEstado.getNombre();
+            for (int i = 0; i < cambioDeEstado.Count(); i++)
+            {
+                if (cambioDeEstado[i].esUltimoEstado())
+                {
+                    this.ultimoCambioEstado = cambioDeEstado[i].getNombre();
+                    return ultimoCambioEstado;
+                }
+            }
         }
 
         public long getDuration()
         {
-
-            return 1L;
+            return ultimoCambioEstado.getFechaHoraInicio() - ultimoCambioEstado.getFechaHoraFin();
         }
 
-        public void getRespuesta()
+        public void getRespuestas()
         {
 
 

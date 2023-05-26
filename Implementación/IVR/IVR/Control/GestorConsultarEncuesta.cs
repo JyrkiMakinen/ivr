@@ -8,14 +8,15 @@ using IVR.Datos;
 using IVR.Entity;
 
 namespace IVR.Control
-{   
+{
 
     public class GestorConsultarEncuesta
     {
         private DateTime fechaInicioPeriodo;
-        private DateTime fechaFinPeriodo; 
+        private DateTime fechaFinPeriodo;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
+        private string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla) {
             this.generadorDeDatos = new GeneradorDeDatos();
@@ -23,46 +24,60 @@ namespace IVR.Control
         }
 
         public void opcionConsultarEncuesta() {
-
+            pantallaConsultarEncuesta.solicitarPeriodo();
         }
         
         public void tomarPeriodo()
         {
             this.fechaInicioPeriodo = pantallaConsultarEncuesta.getFechaInicio();
             this.fechaFinPeriodo = pantallaConsultarEncuesta.getFechaFin();
+            buscarLlamadasConEncRespondidas();
         }
 
 
-        public void buscarLlamadasConEncRespondidas() {
+        public List<Llamada> buscarLlamadasConEncRespondidas() {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
-            List<Llamada> llamdasConEncuestasRespondidas = new List<Llamada>();
+            List<Llamada> llamdasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
             for (int i = 0; i < listLlamadas.Count(); i++) {
                 if (listLlamadas[i].tieneEncuestasRespondidas()) {
-                    llamdasConEncuestasRespondidas.Add(listLlamadas[i]);
-
-
-
+                    if (listLlamadas[i].esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo)) {
+                        llamdasConEncuestasRespondidasDelPeriodo.Add(listLlamadas[i]);
+                    }
                 }
             }
 
-
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamdasConEncuestasRespondidasDelPeriodo);
         }
 
-        public void tomarSeleccionLlamada() {
-
+        public void tomarSeleccionLlamada(Llamada llamadaSeleccionada) {
+            obtenerDatos(llamadaSeleccionada);
         }
 
 
-        public void obtenerDatos() {
+        public void obtenerDatos(Llamada llamadaSeleccionada) {
+            this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
 
+            //que recibe esto? el nombre del estado o el "Estado" o el "cambio de estado??
+            llamadaSeleccionada.getEstadoActual();
+
+
+            llamadaSeleccionada.getRespuestas();
+
+            pantallaConsultarEncuesta.mostrarEncuesta();
+            pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacon();
         }
 
-        public void tomarSeleccionFormaVisualizacion() {
-
+        public void tomarSeleccionFormaVisualizacion(string formaVisualizacion) {
+            if (formaVisualizacion.Equals("csv")) {
+                generarCsv();
+            }
         }
 
         public void generarCsv() {
+            //generar el csv
 
+
+            finCU();
         }
 
         public void finCU() {
