@@ -14,9 +14,10 @@ namespace IVR.Control
     {
         private DateTime fechaInicioPeriodo;
         private DateTime fechaFinPeriodo;
+        private string nombreCliente;
+        private TimeSpan duracion;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
-        private string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla) {
             this.generadorDeDatos = new GeneradorDeDatos();
@@ -27,26 +28,26 @@ namespace IVR.Control
             pantallaConsultarEncuesta.solicitarPeriodo();
         }
         
-        public void tomarPeriodo()
+        public void tomarPeriodo(DateTime fechaInicio, DateTime fechaFin)
         {
-            this.fechaInicioPeriodo = pantallaConsultarEncuesta.getFechaInicio();
-            this.fechaFinPeriodo = pantallaConsultarEncuesta.getFechaFin();
+            this.fechaInicioPeriodo = fechaInicio;
+            this.fechaFinPeriodo = fechaFin;
             buscarLlamadasConEncRespondidas();
         }
 
 
-        public List<Llamada> buscarLlamadasConEncRespondidas() {
+        public void buscarLlamadasConEncRespondidas() {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
-            List<Llamada> llamdasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
+            List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
             for (int i = 0; i < listLlamadas.Count(); i++) {
                 if (listLlamadas[i].tieneEncuestasRespondidas()) {
                     if (listLlamadas[i].esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo)) {
-                        llamdasConEncuestasRespondidasDelPeriodo.Add(listLlamadas[i]);
+                        llamadasConEncuestasRespondidasDelPeriodo.Add(listLlamadas[i]);
                     }
                 }
             }
 
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamdasConEncuestasRespondidasDelPeriodo);
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo);
         }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada) {
@@ -56,9 +57,8 @@ namespace IVR.Control
 
         public void obtenerDatos(Llamada llamadaSeleccionada) {
             this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
-
-            //que recibe esto? el nombre del estado o el "Estado" o el "cambio de estado??
-            llamadaSeleccionada.getEstadoActual();
+            this.duracion = llamadaSeleccionada.getDuracion();
+            string estadoActual = llamadaSeleccionada.getEstadoActual();
 
 
             llamadaSeleccionada.getRespuestas();
