@@ -10,6 +10,7 @@ namespace IVR.Boundary
         private DateTime fechaInicio;
         private DateTime fechaFin;
         private GestorConsultarEncuesta gestor;
+        private List<Llamada> llamadas;
 
         public PantallaConsultarEncuesta()
         {
@@ -42,11 +43,19 @@ namespace IVR.Boundary
             gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
         }
 
-        public void solicitarSeleccionLlamada(List<Llamada> llamdasConEncuestasRespondidasDelPeriodo)
+        public void solicitarSeleccionLlamada(List<Llamada> llamadas, List<DateTime> fechasHorasLlamadas)
         {
-            cmbLlamada.DataSource = 
+            this.llamadas = llamadas;
+            cmbLlamada.DataSource = fechasHorasLlamadas; // Muestro las horas de las llamadas. En tomarSeleccionLlamada() método vuelvo a vincular cada hora con su respectivo objeto Llamada.
         }
 
+        private void tomarSeleccionLlamada(object sender, EventArgs e)
+        {
+            int indiceLlamada = cmbLlamada.SelectedIndex;
+            Llamada llamadaSeleccionada = llamadas[indiceLlamada]; // Recupero el objeto Llamada según el índice del cmb elegido.
+
+            gestor.tomarSeleccionLlamada(llamadaSeleccionada);
+        }
 
         public DateTime getFechaInicio()
         {
@@ -56,12 +65,6 @@ namespace IVR.Boundary
         public DateTime getFechaFin()
         {
             return fechaFin;
-        }
-
-        public void tomarSeleccionLlamada()
-        {
-            //Pasamos por parametro las llamdas selecciondas de la grid
-            gestor.tomarSeleccionLlamada(llamadaSeleccionada);
         }
 
         public void mostrarEncuesta()

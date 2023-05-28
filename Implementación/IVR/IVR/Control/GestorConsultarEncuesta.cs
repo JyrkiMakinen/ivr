@@ -33,10 +33,11 @@ namespace IVR.Control
         }
 
 
-        public List<Llamada> buscarLlamadasConEncRespondidas()
+        public void buscarLlamadasConEncRespondidas()
         {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
             List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
+            List<DateTime> fechasYHorasDeLlamadasConEncResp = new List<DateTime>();
             foreach (Llamada llamada in listLlamadas)
             {
                 if (llamada.tieneEncuestasRespondidas())
@@ -44,12 +45,12 @@ namespace IVR.Control
                     if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo))
                     {
                         llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
-                        // Hay que conseguir la fecha y hora de esta llamada para mostrarla por pantalla
+                        fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
                     }
                 }
             }
 
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo);
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, fechasYHorasDeLlamadasConEncResp);
         }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)
