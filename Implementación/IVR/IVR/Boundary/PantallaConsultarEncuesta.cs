@@ -1,11 +1,6 @@
-﻿using System;
+﻿using IVR.Control;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IVR.Boundary
@@ -14,9 +9,47 @@ namespace IVR.Boundary
     {
         private DateTime fechaInicio;
         private DateTime fechaFin;
-        private GestorConsutarEncuesta gestor;
+        private GestorConsultarEncuesta gestor;
 
-        public DateTime getFechaInicio () {
+        public PantallaConsultarEncuesta()
+        {
+            opcionConsultarEncuesta();
+        }
+
+        public void opcionConsultarEncuesta()
+        {
+            habilitarPantalla();
+        }
+
+        public void habilitarPantalla()
+        {
+            InitializeComponent();
+            gestor.opcionConsultarEncuesta();
+        }
+
+        public void solicitarPeriodo()
+        {
+            //Esperar a que seleccione fechas
+        }
+
+        public void tomarFechaInicio(object sender, EventArgs e)
+        {
+            //Esperar a que seleccione fecha fin
+        }
+
+        public void tomarFechaFin()
+        {
+            gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
+        }
+
+        public void solicitarSeleccionLlamada(List<Llamada> llamdasConEncuestasRespondidasDelPeriodo)
+        {
+            cmbLlamada.DataSource = 
+        }
+
+
+        public DateTime getFechaInicio()
+        {
             return fechaInicio;
         }
 
@@ -25,56 +58,26 @@ namespace IVR.Boundary
             return fechaFin;
         }
 
-        public PantallaConsultarEncuesta()
+        public void tomarSeleccionLlamada()
         {
-            habilitarPantalla();
-            gestor.opcionConsultarEncuesta();
-        }
-
-        public void habilitarPantalla() {
-            InitializeComponent();
-        }
-
-        public void solicitarPeriodo() {
-            //Por pantalla que ingre fecha desde y hasta
-        }
-
-        public void tomarFechaInicio() {
-            //reemplazar esto por datos cargados en la pantalla
-            this.fechaInicio = new DateTime(2023, 5, 24, 0, 0, 0);
-        }
-
-        public void tomarFechaFin() {
-            //reemplazar esto por datos cargados en la pantalla
-            this.fechaFin = new DateTime(2023, 5, 25, 0, 0, 0);
-
-            //Aca llamamos al gestor en tomar periodo? o en algun boton que diga buscar?
-            gestor.tomarPeriodo(fechaInicio, fechaFin);
-        }
-
-        public void solicitarSeleccionLlamada(List<Llamada> llamdasConEncuestasRespondidasDelPeriodo) {
-
-            //mostrar en una grilla seleccionable las llamadas con encuestas respondidas del periodo
-
-        }
-
-        public void tomarSeleccionLlamada() {
             //Pasamos por parametro las llamdas selecciondas de la grid
             gestor.tomarSeleccionLlamada(llamadaSeleccionada);
         }
 
-        public void mostrarEncuesta() {
+        public void mostrarEncuesta()
+        {
 
         }
 
-        public void soliciarSeleccionFormaVisualización() {
+        public void soliciarSeleccionFormaVisualización()
+        {
 
         }
 
-        public void tomarSeleccionFormaVisualización() {
+        public void tomarSeleccionFormaVisualización()
+        {
 
         }
-
 
 
     }
