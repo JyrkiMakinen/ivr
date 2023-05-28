@@ -1,11 +1,6 @@
-﻿using System;
+﻿using IVR.Control;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace IVR.Boundary
@@ -14,67 +9,68 @@ namespace IVR.Boundary
     {
         private DateTime fechaInicio;
         private DateTime fechaFin;
-        private GestorConsutarEncuesta gestor;
-
-        public DateTime getFechaInicio () {
-            return fechaInicio;
-        }
-
-        public DateTime getFechaFin()
-        {
-            return fechaFin;
-        }
+        private GestorConsultarEncuesta gestor;
+        private List<Llamada> llamadas;
 
         public PantallaConsultarEncuesta()
         {
+            opcionConsultarEncuesta();
+        }
+
+        public void opcionConsultarEncuesta()
+        {
             habilitarPantalla();
+        }
+
+        public void habilitarPantalla()
+        {
+            InitializeComponent();
             gestor.opcionConsultarEncuesta();
         }
 
-        public void habilitarPantalla() {
-            InitializeComponent();
+        public void solicitarPeriodo()
+        {
+            //Esperar a que seleccione fechas
         }
 
-        public void solicitarPeriodo() {
-            //Por pantalla que ingre fecha desde y hasta
+        public void tomarFechaInicio(object sender, EventArgs e)
+        {
+            //Esperar a que seleccione fecha fin
         }
 
-        public void tomarFechaInicio() {
-            //reemplazar esto por datos cargados en la pantalla
-            this.fechaInicio = new DateTime(2023, 5, 24, 0, 0, 0);
+        public void tomarFechaFin()
+        {
+            gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
         }
 
-        public void tomarFechaFin() {
-            //reemplazar esto por datos cargados en la pantalla
-            this.fechaFin = new DateTime(2023, 5, 25, 0, 0, 0);
-
-            //Aca llamamos al gestor en tomar periodo? o en algun boton que diga buscar?
-            gestor.tomarPeriodo(fechaInicio, fechaFin);
+        public void solicitarSeleccionLlamada(List<Llamada> llamadas, List<DateTime> fechasHorasLlamadas)
+        {
+            this.llamadas = llamadas;
+            cmbLlamada.DataSource = fechasHorasLlamadas; // Muestro las horas de las llamadas. En tomarSeleccionLlamada() método vuelvo a vincular cada hora con su respectivo objeto Llamada.
         }
 
-        public void solicitarSeleccionLlamada(List<Llamada> llamdasConEncuestasRespondidasDelPeriodo) {
+        private void tomarSeleccionLlamada(object sender, EventArgs e)
+        {
+            int indiceLlamada = cmbLlamada.SelectedIndex;
+            Llamada llamadaSeleccionada = llamadas[indiceLlamada]; // Recupero el objeto Llamada según el índice del cmb elegido.
 
-            //mostrar en una grilla seleccionable las llamadas con encuestas respondidas del periodo
-
-        }
-
-        public void tomarSeleccionLlamada() {
-            //Pasamos por parametro las llamdas selecciondas de la grid
             gestor.tomarSeleccionLlamada(llamadaSeleccionada);
         }
 
-        public void mostrarEncuesta() {
+        public void mostrarEncuesta(/* mil cosas */)
+        {
+            // Recibo todos los datos que me van a mandar los wachines del gestor
+        }
+
+        public void soliciarSeleccionFormaVisualización()
+        {
 
         }
 
-        public void soliciarSeleccionFormaVisualización() {
+        public void tomarSeleccionFormaVisualización()
+        {
 
         }
-
-        public void tomarSeleccionFormaVisualización() {
-
-        }
-
 
 
     }

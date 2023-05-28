@@ -1,11 +1,7 @@
-﻿using System;
+﻿using IVR.Boundary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using IVR.Boundary;
-using IVR.Datos;
-using IVR.Entity;
 
 namespace IVR.Control
 {
@@ -18,15 +14,17 @@ namespace IVR.Control
         private GeneradorDeDatos generadorDeDatos;
         private string nombreCliente;
 
-        public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla) {
+        public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
+        {
             this.generadorDeDatos = new GeneradorDeDatos();
             this.pantallaConsultarEncuesta = pantalla;
         }
 
-        public void opcionConsultarEncuesta() {
+        public void opcionConsultarEncuesta()
+        {
             pantallaConsultarEncuesta.solicitarPeriodo();
         }
-        
+
         public void tomarPeriodo()
         {
             this.fechaInicioPeriodo = pantallaConsultarEncuesta.getFechaInicio();
@@ -35,26 +33,34 @@ namespace IVR.Control
         }
 
 
-        public List<Llamada> buscarLlamadasConEncRespondidas() {
+        public void buscarLlamadasConEncRespondidas()
+        {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
-            List<Llamada> llamdasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
-            for (int i = 0; i < listLlamadas.Count(); i++) {
-                if (listLlamadas[i].tieneEncuestasRespondidas()) {
-                    if (listLlamadas[i].esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo)) {
-                        llamdasConEncuestasRespondidasDelPeriodo.Add(listLlamadas[i]);
+            List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
+            List<DateTime> fechasYHorasDeLlamadasConEncResp = new List<DateTime>();
+            foreach (Llamada llamada in listLlamadas)
+            {
+                if (llamada.tieneEncuestasRespondidas())
+                {
+                    if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo))
+                    {
+                        llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
+                        fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
                     }
                 }
             }
 
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamdasConEncuestasRespondidasDelPeriodo);
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, fechasYHorasDeLlamadasConEncResp);
         }
 
-        public void tomarSeleccionLlamada(Llamada llamadaSeleccionada) {
+        public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)
+        {
             obtenerDatos(llamadaSeleccionada);
         }
 
 
-        public void obtenerDatos(Llamada llamadaSeleccionada) {
+        public void obtenerDatos(Llamada llamadaSeleccionada)
+        {
             this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
 
             //que recibe esto? el nombre del estado o el "Estado" o el "cambio de estado??
@@ -67,21 +73,25 @@ namespace IVR.Control
             pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacon();
         }
 
-        public void tomarSeleccionFormaVisualizacion(string formaVisualizacion) {
-            if (formaVisualizacion.Equals("csv")) {
+        public void tomarSeleccionFormaVisualizacion(string formaVisualizacion)
+        {
+            if (formaVisualizacion.Equals("csv"))
+            {
                 generarCsv();
             }
         }
 
-        public void generarCsv() {
+        public void generarCsv()
+        {
             //generar el csv
 
 
             finCU();
         }
 
-        public void finCU() {
-
+        public void finCU()
+        {
+            
         }
 
 
