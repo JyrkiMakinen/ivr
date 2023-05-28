@@ -5,18 +5,23 @@ namespace IVR.Entity
 
         private string nombre { get; set; }
 
-        public Estado(string nombre, bool esIniciada)
+        public Estado(string nombre)
         {
             this.nombre = nombre;
-            this.esIniciada = esIniciada;
         }
 
         public bool esIniciada()
         {
-            // Implementación del método tieneEncuestasRespondidas
-            // Aquí puedes agregar la lógica que determine si la llamada tiene encuestas respondidas
-            // Por ahora, el método está vacío y siempre devuelve false
-            return false;
+            return this.getNombre() == "Iniciada";
+        }
+
+        public bool esFinalizada()
+        {
+            return this.getNombre() == "Finalizada";
+        }
+
+        public string getNombre() {
+            return this.nombre;
         }
     }
 }

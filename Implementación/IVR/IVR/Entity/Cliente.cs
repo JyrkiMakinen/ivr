@@ -4,5 +4,9 @@ namespace IVR.Entity
     {
         private string nombre { get; set; }
 
+        public string getNombre() {
+            return this.nombre;
+        }
+
     }
 }
