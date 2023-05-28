@@ -57,19 +57,9 @@ namespace IVR.Boundary
             gestor.tomarSeleccionLlamada(llamadaSeleccionada);
         }
 
-        public DateTime getFechaInicio()
+        public void mostrarEncuesta(/* mil cosas */)
         {
-            return fechaInicio;
-        }
-
-        public DateTime getFechaFin()
-        {
-            return fechaFin;
-        }
-
-        public void mostrarEncuesta()
-        {
-
+            // Recibo todos los datos que me van a mandar los wachines del gestor
         }
 
         public void soliciarSeleccionFormaVisualización()

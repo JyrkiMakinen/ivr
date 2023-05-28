@@ -36,24 +36,29 @@
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.lblLlamada = new System.Windows.Forms.Label();
             this.cmbLlamada = new System.Windows.Forms.ComboBox();
+            this.lblClienteInfo = new System.Windows.Forms.Label();
+            this.pnlPeriodo = new System.Windows.Forms.Panel();
+            this.pnlInfo = new System.Windows.Forms.Panel();
+            this.lblEncuesta = new System.Windows.Forms.Label();
+            this.lblEncuestaInfo = new System.Windows.Forms.Label();
+            this.lblDuracion = new System.Windows.Forms.Label();
+            this.lblDuracionInfo = new System.Windows.Forms.Label();
+            this.lblEstado = new System.Windows.Forms.Label();
+            this.lblEstadoInfo = new System.Windows.Forms.Label();
             this.lblCliente = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblInformacion = new System.Windows.Forms.Label();
             this.grdEncuesta = new System.Windows.Forms.DataGridView();
             this.preguntas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.respuestas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblInformacion = new System.Windows.Forms.Label();
-            this.lblValorCliente = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.pnlCsv = new System.Windows.Forms.Panel();
+            this.lblVisualizacion = new System.Windows.Forms.Label();
+            this.cmbFormaVisualizacion = new System.Windows.Forms.ComboBox();
+            this.btnGenerar = new System.Windows.Forms.Button();
             this.pnlTitulo.SuspendLayout();
-            this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
+            this.pnlPeriodo.SuspendLayout();
+            this.pnlInfo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).BeginInit();
+            this.pnlCsv.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitulo
@@ -147,47 +152,128 @@
             this.cmbLlamada.TabIndex = 6;
             this.cmbLlamada.SelectedIndexChanged += new System.EventHandler(this.tomarSeleccionLlamada);
             // 
+            // lblClienteInfo
+            // 
+            this.lblClienteInfo.AutoSize = true;
+            this.lblClienteInfo.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblClienteInfo.Location = new System.Drawing.Point(29, 98);
+            this.lblClienteInfo.Name = "lblClienteInfo";
+            this.lblClienteInfo.Size = new System.Drawing.Size(79, 24);
+            this.lblClienteInfo.TabIndex = 7;
+            this.lblClienteInfo.Text = "Cliente: ";
+            // 
+            // pnlPeriodo
+            // 
+            this.pnlPeriodo.Controls.Add(this.lblFechaInicio);
+            this.pnlPeriodo.Controls.Add(this.dtpInicio);
+            this.pnlPeriodo.Controls.Add(this.cmbLlamada);
+            this.pnlPeriodo.Controls.Add(this.lblFechaFin);
+            this.pnlPeriodo.Controls.Add(this.lblLlamada);
+            this.pnlPeriodo.Controls.Add(this.dtpFin);
+            this.pnlPeriodo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlPeriodo.Location = new System.Drawing.Point(0, 100);
+            this.pnlPeriodo.Name = "pnlPeriodo";
+            this.pnlPeriodo.Size = new System.Drawing.Size(786, 153);
+            this.pnlPeriodo.TabIndex = 8;
+            // 
+            // pnlInfo
+            // 
+            this.pnlInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.pnlInfo.Controls.Add(this.pnlCsv);
+            this.pnlInfo.Controls.Add(this.lblEncuesta);
+            this.pnlInfo.Controls.Add(this.lblEncuestaInfo);
+            this.pnlInfo.Controls.Add(this.lblDuracion);
+            this.pnlInfo.Controls.Add(this.lblDuracionInfo);
+            this.pnlInfo.Controls.Add(this.lblEstado);
+            this.pnlInfo.Controls.Add(this.lblEstadoInfo);
+            this.pnlInfo.Controls.Add(this.lblCliente);
+            this.pnlInfo.Controls.Add(this.lblInformacion);
+            this.pnlInfo.Controls.Add(this.lblClienteInfo);
+            this.pnlInfo.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlInfo.Location = new System.Drawing.Point(786, 100);
+            this.pnlInfo.Name = "pnlInfo";
+            this.pnlInfo.Size = new System.Drawing.Size(398, 461);
+            this.pnlInfo.TabIndex = 9;
+            // 
+            // lblEncuesta
+            // 
+            this.lblEncuesta.AutoSize = true;
+            this.lblEncuesta.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEncuesta.Location = new System.Drawing.Point(134, 234);
+            this.lblEncuesta.Name = "lblEncuesta";
+            this.lblEncuesta.Size = new System.Drawing.Size(249, 24);
+            this.lblEncuesta.TabIndex = 15;
+            this.lblEncuesta.Text = "[descripcion de la encuesta]";
+            // 
+            // lblEncuestaInfo
+            // 
+            this.lblEncuestaInfo.AutoSize = true;
+            this.lblEncuestaInfo.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEncuestaInfo.Location = new System.Drawing.Point(29, 234);
+            this.lblEncuestaInfo.Name = "lblEncuestaInfo";
+            this.lblEncuestaInfo.Size = new System.Drawing.Size(96, 24);
+            this.lblEncuestaInfo.TabIndex = 14;
+            this.lblEncuestaInfo.Text = "Encuesta: ";
+            // 
+            // lblDuracion
+            // 
+            this.lblDuracion.AutoSize = true;
+            this.lblDuracion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDuracion.Location = new System.Drawing.Point(134, 189);
+            this.lblDuracion.Name = "lblDuracion";
+            this.lblDuracion.Size = new System.Drawing.Size(98, 24);
+            this.lblDuracion.TabIndex = 13;
+            this.lblDuracion.Text = "[duracion]";
+            // 
+            // lblDuracionInfo
+            // 
+            this.lblDuracionInfo.AutoSize = true;
+            this.lblDuracionInfo.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDuracionInfo.Location = new System.Drawing.Point(29, 189);
+            this.lblDuracionInfo.Name = "lblDuracionInfo";
+            this.lblDuracionInfo.Size = new System.Drawing.Size(99, 24);
+            this.lblDuracionInfo.TabIndex = 12;
+            this.lblDuracionInfo.Text = "Duración: ";
+            // 
+            // lblEstado
+            // 
+            this.lblEstado.AutoSize = true;
+            this.lblEstado.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstado.Location = new System.Drawing.Point(114, 143);
+            this.lblEstado.Name = "lblEstado";
+            this.lblEstado.Size = new System.Drawing.Size(187, 24);
+            this.lblEstado.TabIndex = 11;
+            this.lblEstado.Text = "[nombre del estado]";
+            // 
+            // lblEstadoInfo
+            // 
+            this.lblEstadoInfo.AutoSize = true;
+            this.lblEstadoInfo.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEstadoInfo.Location = new System.Drawing.Point(29, 143);
+            this.lblEstadoInfo.Name = "lblEstadoInfo";
+            this.lblEstadoInfo.Size = new System.Drawing.Size(79, 24);
+            this.lblEstadoInfo.TabIndex = 10;
+            this.lblEstadoInfo.Text = "Estado: ";
+            // 
             // lblCliente
             // 
             this.lblCliente.AutoSize = true;
             this.lblCliente.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCliente.Location = new System.Drawing.Point(29, 98);
+            this.lblCliente.Location = new System.Drawing.Point(114, 98);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(79, 24);
-            this.lblCliente.TabIndex = 7;
-            this.lblCliente.Text = "Cliente: ";
+            this.lblCliente.Size = new System.Drawing.Size(183, 24);
+            this.lblCliente.TabIndex = 9;
+            this.lblCliente.Text = "[nombre del cliente]";
             // 
-            // panel1
+            // lblInformacion
             // 
-            this.panel1.Controls.Add(this.lblFechaInicio);
-            this.panel1.Controls.Add(this.dtpInicio);
-            this.panel1.Controls.Add(this.cmbLlamada);
-            this.panel1.Controls.Add(this.lblFechaFin);
-            this.panel1.Controls.Add(this.lblLlamada);
-            this.panel1.Controls.Add(this.dtpFin);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel1.Location = new System.Drawing.Point(0, 100);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(786, 153);
-            this.panel1.TabIndex = 8;
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.panel2.Controls.Add(this.label6);
-            this.panel2.Controls.Add(this.label5);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.lblValorCliente);
-            this.panel2.Controls.Add(this.lblInformacion);
-            this.panel2.Controls.Add(this.lblCliente);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(786, 100);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(398, 461);
-            this.panel2.TabIndex = 9;
+            this.lblInformacion.AutoSize = true;
+            this.lblInformacion.Font = new System.Drawing.Font("Microsoft JhengHei", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInformacion.Location = new System.Drawing.Point(53, 31);
+            this.lblInformacion.Name = "lblInformacion";
+            this.lblInformacion.Size = new System.Drawing.Size(314, 31);
+            this.lblInformacion.TabIndex = 8;
+            this.lblInformacion.Text = "Información de la llamada";
             // 
             // grdEncuesta
             // 
@@ -214,85 +300,57 @@
             this.respuestas.HeaderText = "Respuestas";
             this.respuestas.Name = "respuestas";
             // 
-            // lblInformacion
+            // pnlCsv
             // 
-            this.lblInformacion.AutoSize = true;
-            this.lblInformacion.Font = new System.Drawing.Font("Microsoft JhengHei", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInformacion.Location = new System.Drawing.Point(53, 31);
-            this.lblInformacion.Name = "lblInformacion";
-            this.lblInformacion.Size = new System.Drawing.Size(314, 31);
-            this.lblInformacion.TabIndex = 8;
-            this.lblInformacion.Text = "Información de la llamada";
+            this.pnlCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.pnlCsv.Controls.Add(this.btnGenerar);
+            this.pnlCsv.Controls.Add(this.cmbFormaVisualizacion);
+            this.pnlCsv.Controls.Add(this.lblVisualizacion);
+            this.pnlCsv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlCsv.Location = new System.Drawing.Point(0, 351);
+            this.pnlCsv.Name = "pnlCsv";
+            this.pnlCsv.Size = new System.Drawing.Size(398, 110);
+            this.pnlCsv.TabIndex = 16;
             // 
-            // lblValorCliente
+            // lblVisualizacion
             // 
-            this.lblValorCliente.AutoSize = true;
-            this.lblValorCliente.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblValorCliente.Location = new System.Drawing.Point(114, 98);
-            this.lblValorCliente.Name = "lblValorCliente";
-            this.lblValorCliente.Size = new System.Drawing.Size(183, 24);
-            this.lblValorCliente.TabIndex = 9;
-            this.lblValorCliente.Text = "[nombre del cliente]";
+            this.lblVisualizacion.AutoSize = true;
+            this.lblVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVisualizacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblVisualizacion.Location = new System.Drawing.Point(20, 18);
+            this.lblVisualizacion.Name = "lblVisualizacion";
+            this.lblVisualizacion.Size = new System.Drawing.Size(220, 24);
+            this.lblVisualizacion.TabIndex = 17;
+            this.lblVisualizacion.Text = "Forma de Visualización: ";
             // 
-            // label1
+            // cmbFormaVisualizacion
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(114, 143);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(187, 24);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "[nombre del estado]";
+            this.cmbFormaVisualizacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFormaVisualizacion.Enabled = false;
+            this.cmbFormaVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFormaVisualizacion.FormattingEnabled = true;
+            this.cmbFormaVisualizacion.Items.AddRange(new object[] {
+            "CSV",
+            "Impresión"});
+            this.cmbFormaVisualizacion.Location = new System.Drawing.Point(246, 15);
+            this.cmbFormaVisualizacion.Name = "cmbFormaVisualizacion";
+            this.cmbFormaVisualizacion.Size = new System.Drawing.Size(121, 30);
+            this.cmbFormaVisualizacion.TabIndex = 18;
             // 
-            // label2
+            // btnGenerar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(29, 143);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(79, 24);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Estado: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(29, 189);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 24);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Duración: ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(134, 189);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(98, 24);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "[duracion]";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(29, 234);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(96, 24);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "Encuesta: ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(134, 234);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(249, 24);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "[descripcion de la encuesta]";
+            this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(120)))), ((int)(((byte)(55)))));
+            this.btnGenerar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(45)))));
+            this.btnGenerar.FlatAppearance.BorderSize = 3;
+            this.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnGenerar.Location = new System.Drawing.Point(87, 59);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(217, 39);
+            this.btnGenerar.TabIndex = 19;
+            this.btnGenerar.Text = "Generar archivo";
+            this.btnGenerar.UseVisualStyleBackColor = false;
             // 
             // PantallaConsultarEncuesta
             // 
@@ -300,8 +358,8 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(1184, 561);
             this.Controls.Add(this.grdEncuesta);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlPeriodo);
+            this.Controls.Add(this.pnlInfo);
             this.Controls.Add(this.pnlTitulo);
             this.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
@@ -310,11 +368,13 @@
             this.Text = "Consultar Encuesta";
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.pnlPeriodo.ResumeLayout(false);
+            this.pnlPeriodo.PerformLayout();
+            this.pnlInfo.ResumeLayout(false);
+            this.pnlInfo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).EndInit();
+            this.pnlCsv.ResumeLayout(false);
+            this.pnlCsv.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -329,19 +389,23 @@
         private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.Label lblLlamada;
         private System.Windows.Forms.ComboBox cmbLlamada;
+        private System.Windows.Forms.Label lblClienteInfo;
+        private System.Windows.Forms.Panel pnlPeriodo;
+        private System.Windows.Forms.Panel pnlInfo;
+        private System.Windows.Forms.Label lblEncuesta;
+        private System.Windows.Forms.Label lblEncuestaInfo;
+        private System.Windows.Forms.Label lblDuracion;
+        private System.Windows.Forms.Label lblDuracionInfo;
+        private System.Windows.Forms.Label lblEstado;
+        private System.Windows.Forms.Label lblEstadoInfo;
         private System.Windows.Forms.Label lblCliente;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblValorCliente;
         private System.Windows.Forms.Label lblInformacion;
         private System.Windows.Forms.DataGridView grdEncuesta;
         private System.Windows.Forms.DataGridViewTextBoxColumn preguntas;
         private System.Windows.Forms.DataGridViewTextBoxColumn respuestas;
+        private System.Windows.Forms.Panel pnlCsv;
+        private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.ComboBox cmbFormaVisualizacion;
+        private System.Windows.Forms.Label lblVisualizacion;
     }
 }
