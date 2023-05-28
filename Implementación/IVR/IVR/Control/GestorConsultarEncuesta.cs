@@ -1,4 +1,6 @@
 ﻿using IVR.Boundary;
+using IVR.Datos;
+using IVR.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,10 @@ namespace IVR.Control
     {
         private DateTime fechaInicioPeriodo;
         private DateTime fechaFinPeriodo;
+        private string nombreCliente;
+        private TimeSpan duracion;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
-        private string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
         {
@@ -24,14 +27,13 @@ namespace IVR.Control
         {
             pantallaConsultarEncuesta.solicitarPeriodo();
         }
-
-        public void tomarPeriodo()
+        
+        public void tomarPeriodo(DateTime fechaInicio, DateTime fechaFin)
         {
-            this.fechaInicioPeriodo = pantallaConsultarEncuesta.getFechaInicio();
-            this.fechaFinPeriodo = pantallaConsultarEncuesta.getFechaFin();
+            this.fechaInicioPeriodo = fechaInicio;
+            this.fechaFinPeriodo = fechaFin;
             buscarLlamadasConEncRespondidas();
         }
-
 
         public void buscarLlamadasConEncRespondidas()
         {
@@ -48,9 +50,8 @@ namespace IVR.Control
                         fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
                     }
                 }
-            }
-
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, fechasYHorasDeLlamadasConEncResp);
+            } 
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo);
         }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)
@@ -62,9 +63,8 @@ namespace IVR.Control
         public void obtenerDatos(Llamada llamadaSeleccionada)
         {
             this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
-
-            //que recibe esto? el nombre del estado o el "Estado" o el "cambio de estado??
-            llamadaSeleccionada.getEstadoActual();
+            string estadoActual = llamadaSeleccionada.getEstadoActual();
+            this.duracion = llamadaSeleccionada.calcularDuracion();
 
 
             llamadaSeleccionada.getRespuestas();
