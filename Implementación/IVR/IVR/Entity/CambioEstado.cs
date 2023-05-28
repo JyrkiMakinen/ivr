@@ -1,3 +1,4 @@
+using System;
 namespace IVR.Entity
 {
     public class CambioEstado
@@ -15,18 +16,20 @@ namespace IVR.Entity
 
         public bool esEstadoInicial()
         {
-            if (estado.esIniciada()) {
-                return true;
-            }
-            return false;
+            return estado.esIniciada();
         }
 
         public bool esUltimoEstado()
         {
-            if (fechaHoraFin == null) {
-                return true;
-            }
-            return false;
+            return estado.esFinalizada();
+        }
+
+        public string getNombreEstado() {
+            return estado.getNombre();
+        }
+
+        public DateTime getFechaHoraInicio() {
+            return this.fechaHoraInicio;
         }
     }
 }

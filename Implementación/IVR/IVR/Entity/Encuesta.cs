@@ -10,5 +10,8 @@ namespace IVR.Entity
             this.descripcionEncuesta = descripcion;
         }
 
+        public string getDescripcionEncuesta() {
+            return this.descripcionEncuesta;
+        }
     }
 }

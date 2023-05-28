@@ -16,14 +16,19 @@ namespace IVR.Datos
 
         public GeneradorDeDatos() {
             //Estados
-            Estado estado1 = new Estado("Iniciada", true);
-            Estado estado2 = new Estado("Cancelada", false);
-            Estado estado2 = new Estado("Finalizada", false);
-            Estado estado2 = new Estado("EnCurso", false);
+            Estado estadoIniciada = new Estado("Iniciada");
+            Estado estadoCancelada = new Estado("Cancelada");
+            Estado estadoEncurso = new Estado("EnCurso");
+            Estado estadoFinalizada = new Estado("Finalizada");
 
-            estados = new List<Estado>() { estado1, estado2 };
+            estados = new List<Estado>() { estadoIniciada, estadoCancelada };
 
             //cambioEstados
+            CambioEstado cambioEstado1 = new CambioEstado(new DateTime(2023, 5, 25, 10, 40, 00), estadoIniciada);
+            CambioEstado cambioEstado2 = new CambioEstado(new DateTime(2023, 5, 25, 10, 50, 00), estadoEncurso);
+            CambioEstado cambioEstado3 = new CambioEstado(new DateTime(2023, 5, 25, 11, 05, 00), estadoFinalizada);
+
+            cambiosDeEstado = new List<CambioEstado>() { cambioEstado1, cambioEstado2, cambioEstado3 };
 
 
             //Clientes
