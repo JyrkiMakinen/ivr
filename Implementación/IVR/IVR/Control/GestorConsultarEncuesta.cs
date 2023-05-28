@@ -25,21 +25,14 @@ namespace IVR.Control
         {
             pantallaConsultarEncuesta.solicitarPeriodo();
         }
-<<<<<<< HEAD
-
-        public void tomarPeriodo()
-=======
         
         public void tomarPeriodo(DateTime fechaInicio, DateTime fechaFin)
->>>>>>> 6a26e101d4bb4fa689063310c1e2b0643f5e0d1c
         {
             this.fechaInicioPeriodo = fechaInicio;
             this.fechaFinPeriodo = fechaFin;
             buscarLlamadasConEncRespondidas();
         }
 
-
-<<<<<<< HEAD
         public void buscarLlamadasConEncRespondidas()
         {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
@@ -53,24 +46,10 @@ namespace IVR.Control
                     {
                         llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
                         fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
-=======
-        public void buscarLlamadasConEncRespondidas() {
-            List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
-            List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
-            for (int i = 0; i < listLlamadas.Count(); i++) {
-                if (listLlamadas[i].tieneEncuestasRespondidas()) {
-                    if (listLlamadas[i].esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo)) {
-                        llamadasConEncuestasRespondidasDelPeriodo.Add(listLlamadas[i]);
->>>>>>> 6a26e101d4bb4fa689063310c1e2b0643f5e0d1c
                     }
                 }
-            }
-
-<<<<<<< HEAD
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, fechasYHorasDeLlamadasConEncResp);
-=======
+            } 
             pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo);
->>>>>>> 6a26e101d4bb4fa689063310c1e2b0643f5e0d1c
         }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)

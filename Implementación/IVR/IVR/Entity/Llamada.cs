@@ -1,33 +1,35 @@
 using System;
+using System.Collections.Generic;
+
 namespace IVR.Entity
 {
     public class Llamada
     {
-        private List<CambioDeEstado> cambioDeEstado;
-        private CambioDeEstado ultimoCambioEstado;
+        private List<CambioEstado> cambiosDeEstado;
+        private string ultimoCambioEstado;
         private Cliente cliente;
         private TimeSpan duracion;
         private bool encuestaEnviada;
-        private List<RespuestaDeCliente> respuestasDeCliente;
+        private List<RespuestaDeCliente> respuestasCliente;
 
         public Llamada(Cliente cliente)
         {
             Estado estado = new Estado("Iniciada");
-            CambioDeEstado cambioDeEstado1 = new CambioDeEstado(new DateTime(), estado);
+            CambioEstado cambioDeEstado1 = new CambioEstado(new DateTime(), estado);
 
-            cambiosDeEstado = new List<CambioDeEstado> { cambioDeEstado1 };
+            cambiosDeEstado = new List<CambioEstado> { cambioDeEstado1 };
             this.cliente = cliente;
             this.encuestaEnviada = true; // hardcodeado en true para simular encuesta respondida, pero deberia inicializarse en false
         }
 
         public bool tieneEncuestasRespondidas()
         {
-            return respuestasDeCliente.Count() > 0; 
+            return respuestasCliente.Count > 0; 
         }
 
         public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo)
         {
-            for (int i = 0; i < cambiosDeEstado.Count(); i++) {
+            for (int i = 0; i < cambiosDeEstado.Count; i++) {
                 if (cambiosDeEstado[i].esEstadoInicial()) {
                     if (cambiosDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambiosDeEstado[i].getFechaHoraInicio() < fechaFinPeriodo) {
                         return true;
@@ -45,7 +47,7 @@ namespace IVR.Entity
 
         public string getEstadoActual()
         {
-            for (int i = 0; i < cambiosDeEstado.Count(); i++)
+            for (int i = 0; i < cambiosDeEstado.Count; i++)
             {
                 if (cambiosDeEstado[i].esUltimoEstado())
                 {
@@ -61,13 +63,13 @@ namespace IVR.Entity
             DateTime fechaHoraInicio;
             DateTime fechaHoraFin;
 
-            for (int i = 0; i < cambiosDeEstado.Count(); i++) {
+            for (int i = 0; i < cambiosDeEstado.Count; i++) {
                 if (cambiosDeEstado[i].esEstadoInicial()) {
                     fechaHoraInicio = cambiosDeEstado[i].getFechaHoraInicio(); // Obtiene la fecha y hora inicio a partir de la cual se seteo en estado Iniciada
                 }
 
                 if (cambiosDeEstado[i].esUltimoEstado()) {
-                    fechaHoraFin = cambiosDeEstado[i].getFechaHoraInicio() // Obtiene la fecha y hora inicio a partir de la cual se seteo en estado Finalizada
+                    fechaHoraFin = cambiosDeEstado[i].getFechaHoraInicio(); // Obtiene la fecha y hora inicio a partir de la cual se seteo en estado Finalizada
                 }
             }
 

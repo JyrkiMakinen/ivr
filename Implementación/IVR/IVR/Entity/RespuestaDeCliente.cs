@@ -1,3 +1,5 @@
+using System;
+
 namespace IVR.Entity
 {
     public class RespuestaDeCliente
