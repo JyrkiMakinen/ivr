@@ -64,14 +64,24 @@ namespace IVR.Boundary
 
         public void soliciarSeleccionFormaVisualización()
         {
-
+            // Esperar que se aprete el botón de Generar Archivo
         }
 
-        public void tomarSeleccionFormaVisualización()
+        public void tomarSeleccionFormaVisualización(object sender, EventArgs e)
         {
-
+            if (cmbFormaVisualizacion.SelectedIndex == 0) 
+            {
+                gestor.generarCsv();
+                MessageBox.Show("¡Archivo generado exitosamente!", "Atención");
+            }
+            else if (cmbFormaVisualizacion.SelectedIndex == -1)
+            {
+                MessageBox.Show("Elija una forma de visualización.", "Atención");
+            }
+            else
+            {
+                MessageBox.Show("Funcionalidad no implementada.", "Atención");
+            }
         }
-
-
     }
 }

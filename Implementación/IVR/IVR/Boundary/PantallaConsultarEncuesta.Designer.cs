@@ -39,6 +39,10 @@
             this.lblClienteInfo = new System.Windows.Forms.Label();
             this.pnlPeriodo = new System.Windows.Forms.Panel();
             this.pnlInfo = new System.Windows.Forms.Panel();
+            this.pnlCsv = new System.Windows.Forms.Panel();
+            this.btnGenerar = new System.Windows.Forms.Button();
+            this.cmbFormaVisualizacion = new System.Windows.Forms.ComboBox();
+            this.lblVisualizacion = new System.Windows.Forms.Label();
             this.lblEncuesta = new System.Windows.Forms.Label();
             this.lblEncuestaInfo = new System.Windows.Forms.Label();
             this.lblDuracion = new System.Windows.Forms.Label();
@@ -50,15 +54,11 @@
             this.grdEncuesta = new System.Windows.Forms.DataGridView();
             this.preguntas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.respuestas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pnlCsv = new System.Windows.Forms.Panel();
-            this.lblVisualizacion = new System.Windows.Forms.Label();
-            this.cmbFormaVisualizacion = new System.Windows.Forms.ComboBox();
-            this.btnGenerar = new System.Windows.Forms.Button();
             this.pnlTitulo.SuspendLayout();
             this.pnlPeriodo.SuspendLayout();
             this.pnlInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).BeginInit();
             this.pnlCsv.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitulo
@@ -195,6 +195,59 @@
             this.pnlInfo.Size = new System.Drawing.Size(398, 461);
             this.pnlInfo.TabIndex = 9;
             // 
+            // pnlCsv
+            // 
+            this.pnlCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.pnlCsv.Controls.Add(this.btnGenerar);
+            this.pnlCsv.Controls.Add(this.cmbFormaVisualizacion);
+            this.pnlCsv.Controls.Add(this.lblVisualizacion);
+            this.pnlCsv.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlCsv.Location = new System.Drawing.Point(0, 351);
+            this.pnlCsv.Name = "pnlCsv";
+            this.pnlCsv.Size = new System.Drawing.Size(398, 110);
+            this.pnlCsv.TabIndex = 16;
+            // 
+            // btnGenerar
+            // 
+            this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(120)))), ((int)(((byte)(55)))));
+            this.btnGenerar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(45)))));
+            this.btnGenerar.FlatAppearance.BorderSize = 3;
+            this.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnGenerar.Location = new System.Drawing.Point(87, 59);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(217, 39);
+            this.btnGenerar.TabIndex = 19;
+            this.btnGenerar.Text = "Generar archivo";
+            this.btnGenerar.UseVisualStyleBackColor = false;
+            this.btnGenerar.Click += new System.EventHandler(this.tomarSeleccionFormaVisualización);
+            // 
+            // cmbFormaVisualizacion
+            // 
+            this.cmbFormaVisualizacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFormaVisualizacion.Enabled = false;
+            this.cmbFormaVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbFormaVisualizacion.FormattingEnabled = true;
+            this.cmbFormaVisualizacion.Items.AddRange(new object[] {
+            "CSV",
+            "Impresión"});
+            this.cmbFormaVisualizacion.Location = new System.Drawing.Point(246, 15);
+            this.cmbFormaVisualizacion.Name = "cmbFormaVisualizacion";
+            this.cmbFormaVisualizacion.Size = new System.Drawing.Size(121, 30);
+            this.cmbFormaVisualizacion.TabIndex = 18;
+            // 
+            // lblVisualizacion
+            // 
+            this.lblVisualizacion.AutoSize = true;
+            this.lblVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblVisualizacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.lblVisualizacion.Location = new System.Drawing.Point(20, 18);
+            this.lblVisualizacion.Name = "lblVisualizacion";
+            this.lblVisualizacion.Size = new System.Drawing.Size(220, 24);
+            this.lblVisualizacion.TabIndex = 17;
+            this.lblVisualizacion.Text = "Forma de Visualización: ";
+            // 
             // lblEncuesta
             // 
             this.lblEncuesta.AutoSize = true;
@@ -300,58 +353,6 @@
             this.respuestas.HeaderText = "Respuestas";
             this.respuestas.Name = "respuestas";
             // 
-            // pnlCsv
-            // 
-            this.pnlCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.pnlCsv.Controls.Add(this.btnGenerar);
-            this.pnlCsv.Controls.Add(this.cmbFormaVisualizacion);
-            this.pnlCsv.Controls.Add(this.lblVisualizacion);
-            this.pnlCsv.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlCsv.Location = new System.Drawing.Point(0, 351);
-            this.pnlCsv.Name = "pnlCsv";
-            this.pnlCsv.Size = new System.Drawing.Size(398, 110);
-            this.pnlCsv.TabIndex = 16;
-            // 
-            // lblVisualizacion
-            // 
-            this.lblVisualizacion.AutoSize = true;
-            this.lblVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblVisualizacion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.lblVisualizacion.Location = new System.Drawing.Point(20, 18);
-            this.lblVisualizacion.Name = "lblVisualizacion";
-            this.lblVisualizacion.Size = new System.Drawing.Size(220, 24);
-            this.lblVisualizacion.TabIndex = 17;
-            this.lblVisualizacion.Text = "Forma de Visualización: ";
-            // 
-            // cmbFormaVisualizacion
-            // 
-            this.cmbFormaVisualizacion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFormaVisualizacion.Enabled = false;
-            this.cmbFormaVisualizacion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbFormaVisualizacion.FormattingEnabled = true;
-            this.cmbFormaVisualizacion.Items.AddRange(new object[] {
-            "CSV",
-            "Impresión"});
-            this.cmbFormaVisualizacion.Location = new System.Drawing.Point(246, 15);
-            this.cmbFormaVisualizacion.Name = "cmbFormaVisualizacion";
-            this.cmbFormaVisualizacion.Size = new System.Drawing.Size(121, 30);
-            this.cmbFormaVisualizacion.TabIndex = 18;
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(120)))), ((int)(((byte)(55)))));
-            this.btnGenerar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(45)))));
-            this.btnGenerar.FlatAppearance.BorderSize = 3;
-            this.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGenerar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnGenerar.Location = new System.Drawing.Point(87, 59);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(217, 39);
-            this.btnGenerar.TabIndex = 19;
-            this.btnGenerar.Text = "Generar archivo";
-            this.btnGenerar.UseVisualStyleBackColor = false;
-            // 
             // PantallaConsultarEncuesta
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -372,9 +373,9 @@
             this.pnlPeriodo.PerformLayout();
             this.pnlInfo.ResumeLayout(false);
             this.pnlInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).EndInit();
             this.pnlCsv.ResumeLayout(false);
             this.pnlCsv.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.grdEncuesta)).EndInit();
             this.ResumeLayout(false);
 
         }
