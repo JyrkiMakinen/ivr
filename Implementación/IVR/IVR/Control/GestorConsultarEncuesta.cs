@@ -1,4 +1,6 @@
 ﻿using IVR.Boundary;
+using IVR.Datos;
+using IVR.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
