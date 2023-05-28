@@ -56,7 +56,7 @@ namespace IVR.Entity
             }
         }
 
-        public TimeSpan getDuracion()
+        public TimeSpan calcularDuracion()
         {
             DateTime fechaHoraInicio;
             DateTime fechaHoraFin;
@@ -76,10 +76,11 @@ namespace IVR.Entity
             return duracion;
         }
 
-        public void getRespuestas()
+        public void getRespuestas() // Que deberia devolver? Un arreglo con todos los datos?
         {
-
-
+            this.respuestaCliente = respuestaDeCliente.obtenerDescripcionRta();
+            this.descripcionPregunta = respuestaCliente.obtenerDescripcionPregunta();
+            this.descripcionEncuesta = respuestaCliente.obtenerDescripcionEncuesta();
         }
     }
 }

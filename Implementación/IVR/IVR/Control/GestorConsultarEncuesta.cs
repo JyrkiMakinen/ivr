@@ -57,8 +57,8 @@ namespace IVR.Control
 
         public void obtenerDatos(Llamada llamadaSeleccionada) {
             this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
-            this.duracion = llamadaSeleccionada.getDuracion();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
+            this.duracion = llamadaSeleccionada.calcularDuracion();
 
 
             llamadaSeleccionada.getRespuestas();

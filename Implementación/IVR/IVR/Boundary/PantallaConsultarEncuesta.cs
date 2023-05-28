@@ -38,9 +38,10 @@ namespace IVR.Boundary
         }
 
         public void solicitarPeriodo() {
-            //Por pantalla que ingre fecha desde y hasta
+            // Mostrar formulario de filtro de fechas e indicar que ingrese una fecha desde y hasta.
         }
 
+        // Definir si es necesario para la entrega este nuevo metodo
         public bool validarFormatoFecha(string txtFecha) {
             if(txtFecha.Text == "") {
                 MessageBox.Show("Campo de fecha requerido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -83,7 +84,7 @@ namespace IVR.Boundary
                     int index = dtgvLlamadasEncontradas.Rows.Add();
 
                     // rellenamos la data de cada celda de la fila
-                    dtgvLlamadasEncontradas.Rows[index].Cells[0].Value = llamadaEncontrada.getNombreClienteDeLlamada();
+                    dtgvLlamadasEncontradas.Rows[index].Cells[0].Value = llamadaEncontrada.encuestaEnviada;
                     dtgvLlamadasEncontradas.Rows[index].Cells[1].Value = "" // fecha de la llamada? duracion? A definir los datos de la llamada que mostramos en la tabla
                 }
             } else {
