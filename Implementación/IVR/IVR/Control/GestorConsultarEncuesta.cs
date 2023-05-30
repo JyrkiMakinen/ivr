@@ -40,6 +40,7 @@ namespace IVR.Control
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
             List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
             List<DateTime> fechasYHorasDeLlamadasConEncResp = new List<DateTime>();
+            //List<String> listClientes = new List<string>;
             foreach (Llamada llamada in listLlamadas)
             {
                 if (llamada.tieneEncuestasRespondidas())
@@ -47,7 +48,8 @@ namespace IVR.Control
                     if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo))
                     {
                         llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
-                        fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
+                       // fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio());
+                       // listClientes.Add(llamada.get)
                     }
                 }
             } 
@@ -62,15 +64,13 @@ namespace IVR.Control
 
         public void obtenerDatos(Llamada llamadaSeleccionada)
         {
-            this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
+            nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
-            this.duracion = llamadaSeleccionada.calcularDuracion();
+            duracion = llamadaSeleccionada.getDuracion();
+            List<RespuestaDeCliente> respuestasCliente = llamadaSeleccionada.getRespuestas();
 
-
-            llamadaSeleccionada.getRespuestas();
-
-            pantallaConsultarEncuesta.mostrarEncuesta();
-            pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacon();
+            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, respuestasCliente);
+            pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacion();
         }
 
         public void tomarSeleccionFormaVisualizacion(string formaVisualizacion)

@@ -5,26 +5,32 @@ namespace IVR.Entity
 {
     public class Llamada
     {
-        private List<CambioEstado> cambiosDeEstado;
         private string ultimoCambioEstado;
-        private Cliente cliente;
+        private Cliente cliente { get; set; }
         private TimeSpan duracion;
         private bool encuestaEnviada;
         private List<RespuestaDeCliente> respuestasCliente;
+        private List<CambioEstado> cambiosDeEstado;
+        private bool v;
+        private long id; // { get; set; }
 
-        public Llamada(Cliente cliente)
+        public Llamada(long id, Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool v)
         {
-            Estado estado = new Estado("Iniciada");
-            CambioEstado cambioDeEstado1 = new CambioEstado(new DateTime(), estado);
-
-            cambiosDeEstado = new List<CambioEstado> { cambioDeEstado1 };
+            this.id = id;
             this.cliente = cliente;
-            this.encuestaEnviada = true; // hardcodeado en true para simular encuesta respondida, pero deberia inicializarse en false
+            this.cambiosDeEstado = cambiosDeEstado;
+            this.respuestasCliente = respuestasCliente;
+            this.duracion = duracion;
+            this.v = v;
         }
 
         public bool tieneEncuestasRespondidas()
         {
             return respuestasCliente.Count > 0; 
+        }
+
+        public long getId() {
+            return id;
         }
 
         public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo)
@@ -40,6 +46,18 @@ namespace IVR.Entity
             return false;
         }
 
+        public DateTime getFechaHoraInicio()
+        {
+            foreach (CambioEstado cambioEstado in cambiosDeEstado)
+            {
+                if (cambioEstado.esEstadoInicial())
+                {
+                    return cambioEstado.getFechaHoraInicio();
+                }
+            }
+            throw new Exception();
+        }
+
         public string getNombreClienteDeLlamada()
         {
             return cliente.getNombre();
@@ -51,38 +69,20 @@ namespace IVR.Entity
             {
                 if (cambiosDeEstado[i].esUltimoEstado())
                 {
-                    this.ultimoCambioEstado = cambiosDeEstado[i].getNombreEstado();
-
-                    return ultimoCambioEstado;
+                    return cambiosDeEstado[i].getNombreEstado();
                 }
             }
+            return "Not Found";
         }
 
-        public TimeSpan calcularDuracion()
+        public List<RespuestaDeCliente> getRespuestas() // Que deberia devolver? Un arreglo con todos los datos?
         {
-            DateTime fechaHoraInicio;
-            DateTime fechaHoraFin;
+           return respuestasCliente;
+        }
 
-            for (int i = 0; i < cambiosDeEstado.Count; i++) {
-                if (cambiosDeEstado[i].esEstadoInicial()) {
-                    fechaHoraInicio = cambiosDeEstado[i].getFechaHoraInicio(); // Obtiene la fecha y hora inicio a partir de la cual se seteo en estado Iniciada
-                }
-
-                if (cambiosDeEstado[i].esUltimoEstado()) {
-                    fechaHoraFin = cambiosDeEstado[i].getFechaHoraInicio(); // Obtiene la fecha y hora inicio a partir de la cual se seteo en estado Finalizada
-                }
-            }
-
-            duracion = fechaHoraFin - fechaHoraInicio; // La diferencia entre dos objetos DateTime resulta en un objeto TimeSpan
-
+        public TimeSpan getDuracion()
+        {
             return duracion;
-        }
-
-        public void getRespuestas() // Que deberia devolver? Un arreglo con todos los datos?
-        {
-            this.respuestaCliente = respuestaDeCliente.obtenerDescripcionRta();
-            this.descripcionPregunta = respuestaCliente.obtenerDescripcionPregunta();
-            this.descripcionEncuesta = respuestaCliente.obtenerDescripcionEncuesta();
         }
     }
 }

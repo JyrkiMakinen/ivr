@@ -2,6 +2,7 @@
 using IVR.Entity;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace IVR.Boundary
@@ -12,6 +13,7 @@ namespace IVR.Boundary
         private DateTime fechaFin;
         private GestorConsultarEncuesta gestor;
         private List<Llamada> llamadas;
+        private bool isComboBoxLoading;
 
         public PantallaConsultarEncuesta()
         {
@@ -26,17 +28,18 @@ namespace IVR.Boundary
         public void habilitarPantalla()
         {
             InitializeComponent();
+            gestor = new GestorConsultarEncuesta(this);
             gestor.opcionConsultarEncuesta();
         }
 
         public void solicitarPeriodo()
         {
-            //Esperar a que seleccione fechas
+            pnlPeriodo.Visible = true;
         }
 
         public void tomarFechaInicio(object sender, EventArgs e)
         {
-            //Esperar a que seleccione fecha fin
+            gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
         }
 
         public void tomarFechaFin()
@@ -44,26 +47,47 @@ namespace IVR.Boundary
             gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
         }
 
-        public void solicitarSeleccionLlamada(List<Llamada> llamadas, List<DateTime> fechasHorasLlamadas)
+        public void solicitarSeleccionLlamada(List<Llamada> llamadas)
         {
-            this.llamadas = llamadas;
-            cmbLlamada.DataSource = fechasHorasLlamadas; // Muestro las horas de las llamadas. En tomarSeleccionLlamada() método vuelvo a vincular cada hora con su respectivo objeto Llamada.
+           this.llamadas = llamadas;
+           isComboBoxLoading = true;
+           cmbLlamada.DataSource = llamadas.Select(llamada => new { Id = llamada.getId(), Cliente = llamada.getNombreClienteDeLlamada()}).ToList();
+           cmbLlamada.DisplayMember = "Cliente";
+           cmbLlamada.ValueMember = "Id";
+           isComboBoxLoading = false;
         }
 
         private void tomarSeleccionLlamada(object sender, EventArgs e)
         {
-            int indiceLlamada = cmbLlamada.SelectedIndex;
-            Llamada llamadaSeleccionada = llamadas[indiceLlamada]; // Recupero el objeto Llamada según el índice del cmb elegido.
-
-            gestor.tomarSeleccionLlamada(llamadaSeleccionada);
+            dynamic selectedItem = cmbLlamada.SelectedItem;
+            long idLlamada = selectedItem.Id;
+            
+            if (idLlamada != null)
+            {
+                foreach (Llamada llamada in llamadas)
+                {
+                    if (llamada.getId() == idLlamada)
+                    {
+                        gestor.tomarSeleccionLlamada(llamada);
+                    }
+                }
+            }
         }
 
-        public void mostrarEncuesta(/* mil cosas */)
+        private void tomarSeleccionLlamada_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (isComboBoxLoading)
+            {
+                return; // Salir del evento sin realizar ninguna acción
+            }
+        }
+
+        public void mostrarEncuesta(string nombreCliente, string estadoActual, TimeSpan duracion, List<RespuestaDeCliente> respuestas)
         {
             // Recibo todos los datos que me van a mandar los wachines del gestor
         }
 
-        public void soliciarSeleccionFormaVisualización()
+        public void solicitarSeleccionFormaVisualizacion()
         {
             // Esperar que se aprete el botón de Generar Archivo
         }
