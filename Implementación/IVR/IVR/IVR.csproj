@@ -53,6 +53,15 @@
       <DependentUpon>PantallaConsultarEncuesta.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\GestorConsultarEncuesta.cs" />
+    <Compile Include="Datos\GeneradorDeDatos.cs" />
+    <Compile Include="Entity\CambioEstado.cs" />
+    <Compile Include="Entity\Cliente.cs" />
+    <Compile Include="Entity\Encuesta.cs" />
+    <Compile Include="Entity\Estado.cs" />
+    <Compile Include="Entity\Llamada.cs" />
+    <Compile Include="Entity\Pregunta.cs" />
+    <Compile Include="Entity\RespuestaDeCliente.cs" />
+    <Compile Include="Entity\RespuestaPosible.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Boundary\PantallaConsultarEncuesta.resx">
@@ -81,7 +90,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Datos\" />
     <Folder Include="Entidades\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
