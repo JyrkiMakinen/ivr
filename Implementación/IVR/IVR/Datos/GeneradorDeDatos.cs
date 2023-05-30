@@ -105,8 +105,7 @@ namespace IVR.Datos
             List<CambioEstado> ce_llamada17 = new List<CambioEstado>() { cambioEstado39, cambioEstado40 };
 
             cambioEstados = new List<CambioEstado>() { cambioEstado1, cambioEstado2, cambioEstado3, cambioEstado4, cambioEstado5, cambioEstado6, cambioEstado7, cambioEstado8, cambioEstado9, cambioEstado10, cambioEstado11, cambioEstado12, cambioEstado13, cambioEstado14, cambioEstado15, cambioEstado16, cambioEstado17, cambioEstado18, cambioEstado19, cambioEstado20, cambioEstado21, cambioEstado22,cambioEstado23,cambioEstado24,cambioEstado25,cambioEstado26,cambioEstado27,cambioEstado28,cambioEstado29,cambioEstado30,cambioEstado31,cambioEstado32,cambioEstado33,cambioEstado34,cambioEstado35,cambioEstado36,cambioEstado37,cambioEstado38,cambioEstado39,cambioEstado40 };
-
-
+            
             //Clientes
             Cliente cliente1 = new Cliente("Pablo Rivadavia"); // Cliente para la llamada i
             Cliente cliente2 = new Cliente("Emanuel Sincero");
@@ -127,52 +126,57 @@ namespace IVR.Datos
             Cliente cliente17 = new Cliente("Judith Meles");
 
             clientes = new List<Cliente>() { cliente1, cliente2, cliente3, cliente4, cliente5, cliente6, cliente7, cliente8, cliente9, cliente10, cliente11, cliente12, cliente13, cliente14, cliente15, cliente16, cliente17};
-
-
-            //RespuestasPosibles
-            RespuestaPosible respPosPunt1 = new RespuestaPosible("Puntaje 1/5", 1);
-            RespuestaPosible respPosPunt2 = new RespuestaPosible("Puntaje 2/5", 2);
-            RespuestaPosible respPosPunt3 = new RespuestaPosible("Puntaje 3/5", 3);
-            RespuestaPosible respPosPunt4 = new RespuestaPosible("Puntaje 4/5", 4);
-            RespuestaPosible respPosPunt5 = new RespuestaPosible("Puntaje 5/5", 5);
-            List<RespuestaPosible> respuestasPosiblesPuntaje = new List<RespuestaPosible>() { respPosPunt1,respPosPunt2,respPosPunt3,respPosPunt4,respPosPunt5 }; // RespuestasPosibles para pregunta i
-
-            RespuestaPosible respPosProblema1 = new RespuestaPosible("Sí", 1);
-            RespuestaPosible respPosProblema2 = new RespuestaPosible("No", 2);
+            
+            //Encuestas
+            Encuesta encuesta1 = new Encuesta("Encuesta general 2023.", new DateTime(2023, 12, 31, 23, 59, 59)); //Encuesta vigente
+           
+            //Preguntas y Respuestas
+            Pregunta pregunta1 = new Pregunta("Califique la atención con un puntaje del 1 al 5.", encuesta1);
+            RespuestaPosible respPosPunt1 = new RespuestaPosible(pregunta1, "Puntaje 1/5", 1);
+            RespuestaPosible respPosPunt2 = new RespuestaPosible(pregunta1, "Puntaje 2/5", 2);
+            RespuestaPosible respPosPunt3 = new RespuestaPosible(pregunta1, "Puntaje 3/5", 3);
+            RespuestaPosible respPosPunt4 = new RespuestaPosible(pregunta1, "Puntaje 4/5", 4);
+            RespuestaPosible respPosPunt5 = new RespuestaPosible(pregunta1, "Puntaje 5/5", 5);
+            List<RespuestaPosible> respuestasPosiblesPuntaje = new List<RespuestaPosible>() { respPosPunt1, respPosPunt2, respPosPunt3, respPosPunt4, respPosPunt5 }; // RespuestasPosibles para pregunta i
+            pregunta1.setRespuestasPosibles(respuestasPosiblesPuntaje);
+            
+            Pregunta pregunta2 = new Pregunta("¿Su problema fue solucionado?", encuesta1);
+            RespuestaPosible respPosProblema1 = new RespuestaPosible(pregunta2, "Sí", 1);
+            RespuestaPosible respPosProblema2 = new RespuestaPosible(pregunta2, "No", 2);
             List<RespuestaPosible> respuestasPosiblesProblema = new List<RespuestaPosible>() { respPosProblema1, respPosProblema2 };
-
-            RespuestaPosible respPosVoz1 = new RespuestaPosible("Muy clara", 1);
-            RespuestaPosible respPosVoz2 = new RespuestaPosible("Bastante clara", 2);
-            RespuestaPosible respPosVoz3 = new RespuestaPosible("Poco clara", 3);
-            RespuestaPosible respPosVoz4 = new RespuestaPosible("Para nada clara", 4);
-            RespuestaPosible respPosVoz5 = new RespuestaPosible("No conversé con un operador", 5);
-            List<RespuestaPosible> respuestasPosiblesVoz = new List<RespuestaPosible>() { respPosVoz1, respPosVoz2, respPosVoz3, respPosVoz4 };
-
-            RespuestaPosible respPosTiempo1 = new RespuestaPosible("Menos de 1 minuto", 1);
-            RespuestaPosible respPosTiempo2 = new RespuestaPosible("Entre 1 y 5 minutos", 2);
-            RespuestaPosible respPosTiempo3 = new RespuestaPosible("Más de 5 minutos", 3);
-            RespuestaPosible respPosTiempo4 = new RespuestaPosible("No contestó", 4);
-            RespuestaPosible respPosTiempo5 = new RespuestaPosible("No intenté hablar con uno", 5);
-            List<RespuestaPosible> respuestasPosiblesTiempo = new List<RespuestaPosible>() { respPosTiempo1, respPosTiempo2, respPosTiempo3 };
-
-            RespuestaPosible respPosSistema1 = new RespuestaPosible("Excelente", 1);
-            RespuestaPosible respPosSistema2 = new RespuestaPosible("Bueno", 2);
-            RespuestaPosible respPosSistema3 = new RespuestaPosible("Malo", 3);
+            pregunta2.setRespuestasPosibles(respuestasPosiblesProblema);
+            
+            Pregunta pregunta3 = new Pregunta("¿Cómo se escuchaba la voz del operador?", encuesta1);
+            RespuestaPosible respPosVoz1 = new RespuestaPosible(pregunta3, "Muy clara", 1);
+            RespuestaPosible respPosVoz2 = new RespuestaPosible(pregunta3, "Bastante clara", 2);
+            RespuestaPosible respPosVoz3 = new RespuestaPosible(pregunta3, "Poco clara", 3);
+            RespuestaPosible respPosVoz4 = new RespuestaPosible(pregunta3, "Para nada clara", 4);
+            RespuestaPosible respPosVoz5 = new RespuestaPosible(pregunta3, "No conversé con un operador", 5);
+            List<RespuestaPosible> respuestasPosiblesVoz = new List<RespuestaPosible>() { respPosVoz1, respPosVoz2, respPosVoz3, respPosVoz4, respPosVoz5 };
+            pregunta3.setRespuestasPosibles(respuestasPosiblesVoz);
+            
+            Pregunta pregunta4 = new Pregunta("¿Cuánto tardó el operador en contestar?", encuesta1);
+            RespuestaPosible respPosTiempo1 = new RespuestaPosible(pregunta4, "Menos de 1 minuto", 1);
+            RespuestaPosible respPosTiempo2 = new RespuestaPosible(pregunta4, "Entre 1 y 5 minutos", 2);
+            RespuestaPosible respPosTiempo3 = new RespuestaPosible(pregunta4, "Más de 5 minutos", 3);
+            RespuestaPosible respPosTiempo4 = new RespuestaPosible(pregunta4, "No contestó", 4);
+            RespuestaPosible respPosTiempo5 = new RespuestaPosible(pregunta4, "No intenté hablar con uno", 5);
+            List<RespuestaPosible> respuestasPosiblesTiempo = new List<RespuestaPosible>() { respPosTiempo1, respPosTiempo2, respPosTiempo3, respPosTiempo4, respPosTiempo5 };
+            pregunta4.setRespuestasPosibles(respuestasPosiblesTiempo);
+            
+            Pregunta pregunta5 = new Pregunta("¿Qué le pareció el nuevo sistema IVR?", encuesta1);
+            RespuestaPosible respPosSistema1 = new RespuestaPosible(pregunta1, "Excelente", 1);
+            RespuestaPosible respPosSistema2 = new RespuestaPosible(pregunta1, "Bueno", 2);
+            RespuestaPosible respPosSistema3 = new RespuestaPosible(pregunta1, "Malo", 3);
             List<RespuestaPosible> respuestasPosiblesSistema = new List<RespuestaPosible>() { respPosSistema1, respPosSistema2, respPosSistema3 };
-
-            respuestasPosibles = new List<RespuestaPosible>() { respPosPunt1, respPosPunt2, respPosPunt3, respPosPunt4, respPosPunt5, respPosProblema1, respPosProblema2, respPosVoz1, respPosVoz2, respPosVoz3, respPosVoz4, respPosVoz5, respPosTiempo1, respPosTiempo2, respPosTiempo3, respPosSistema1, respPosSistema2, respPosSistema3 };
-
-
-            //Preguntas
-            Pregunta pregunta1 = new Pregunta("Califique la atención con un puntaje del 1 al 5.", respuestasPosiblesPuntaje);
-            Pregunta pregunta2 = new Pregunta("¿Su problema fue solucionado?", respuestasPosiblesProblema);
-            Pregunta pregunta3 = new Pregunta("¿Cómo se escuchaba la voz del operador?", respuestasPosiblesVoz);
-            Pregunta pregunta4 = new Pregunta("¿Cuánto tardó el operador en contestar?", respuestasPosiblesTiempo);
-            Pregunta pregunta5 = new Pregunta("¿Qué le pareció el nuevo sistema IVR?", respuestasPosiblesSistema);
+            pregunta5.setRespuestasPosibles(respuestasPosiblesSistema);
 
             preguntas = new List<Pregunta>() { pregunta1,pregunta2,pregunta3,pregunta4,pregunta5 };
+            encuesta1.setPreguntas(preguntas);
+            encuestas = new List<Encuesta>() { encuesta1 };
 
-
+            respuestasPosibles = new List<RespuestaPosible>() { respPosPunt1, respPosPunt2, respPosPunt3, respPosPunt4, respPosPunt5, respPosProblema1, respPosProblema2, respPosVoz1, respPosVoz2, respPosVoz3, respPosVoz4, respPosVoz5, respPosTiempo1, respPosTiempo2, respPosTiempo3, respPosSistema1, respPosSistema2, respPosSistema3 };
+            
             //RespuestasDeCliente
             RespuestaDeCliente resp1_llamada1 = new RespuestaDeCliente(respPosPunt4);
             RespuestaDeCliente resp2_llamada1 = new RespuestaDeCliente(respPosProblema1);
@@ -313,31 +317,26 @@ namespace IVR.Datos
                 resp1_llamada16, resp2_llamada16, resp3_llamada16, resp4_llamada16, resp5_llamada16,
                 resp1_llamada17, resp2_llamada17, resp3_llamada17, resp4_llamada17, resp5_llamada17
             };
-
-
-            //Encuestas
-            Encuesta encuesta1 = new Encuesta("Encuesta general 2023.", preguntas, new DateTime(2023, 12, 31, 23, 59, 59)); //Encuesta vigente
-
-            encuestas = new List<Encuesta>() { encuesta1 };
+            
 
             //Llamadas
-            Llamada llamada1 = new Llamada(cliente1, ce_llamada1, respuestas1, new TimeSpan(0, 1, 21), true);
-            Llamada llamada2 = new Llamada(cliente2, ce_llamada2, respuestas2, new TimeSpan(0, 1, 10), true);
-            Llamada llamada3 = new Llamada(cliente3, ce_llamada3, respuestas3, new TimeSpan(0, 1, 49), true);
-            Llamada llamada4 = new Llamada(cliente4, ce_llamada4, respuestas4, new TimeSpan(0, 0, 39), true);
-            Llamada llamada5 = new Llamada(cliente5, ce_llamada5, respuestas5, new TimeSpan(0, 0, 54), true);
-            Llamada llamada6 = new Llamada(cliente6, ce_llamada6, respuestas6, new TimeSpan(0, 0, 55), true);
-            Llamada llamada7 = new Llamada(cliente7, ce_llamada7, respuestas7, new TimeSpan(0, 2, 13), true);
-            Llamada llamada8 = new Llamada(cliente8, ce_llamada8, respuestas8, new TimeSpan(0, 4, 11), true);
-            Llamada llamada9 = new Llamada(cliente9, ce_llamada9, respuestas9, new TimeSpan(0, 0, 38), true);
-            Llamada llamada10 = new Llamada(cliente10, ce_llamada10, respuestas10, new TimeSpan(0, 0, 52), true);
-            Llamada llamada11 = new Llamada(cliente11, ce_llamada11, respuestas11, new TimeSpan(0, 2, 20), true);
-            Llamada llamada12 = new Llamada(cliente12, ce_llamada12, respuestas12, new TimeSpan(0, 7, 33), true);
-            Llamada llamada13 = new Llamada(cliente13, ce_llamada13, respuestas13, new TimeSpan(0, 0, 45), true);
-            Llamada llamada14 = new Llamada(cliente14, ce_llamada14, respuestas14, new TimeSpan(0, 2, 10), true);
-            Llamada llamada15 = new Llamada(cliente15, ce_llamada15, respuestas15, new TimeSpan(0, 5, 11), true);
-            Llamada llamada16 = new Llamada(cliente16, ce_llamada16, respuestas16, new TimeSpan(0, 8, 28), true);
-            Llamada llamada17 = new Llamada(cliente17, ce_llamada17, respuestas17, new TimeSpan(0, 2, 7), true);
+            Llamada llamada1 = new Llamada(1, cliente1, ce_llamada1, respuestas1, new TimeSpan(0, 1, 21), true);
+            Llamada llamada2 = new Llamada(2, cliente2, ce_llamada2, respuestas2, new TimeSpan(0, 1, 10), true);
+            Llamada llamada3 = new Llamada(3, cliente3, ce_llamada3, respuestas3, new TimeSpan(0, 1, 49), true);
+            Llamada llamada4 = new Llamada(4, cliente4, ce_llamada4, respuestas4, new TimeSpan(0, 0, 39), true);
+            Llamada llamada5 = new Llamada(5, cliente5, ce_llamada5, respuestas5, new TimeSpan(0, 0, 54), true);
+            Llamada llamada6 = new Llamada(6, cliente6, ce_llamada6, respuestas6, new TimeSpan(0, 0, 55), true);
+            Llamada llamada7 = new Llamada(7, cliente7, ce_llamada7, respuestas7, new TimeSpan(0, 2, 13), true);
+            Llamada llamada8 = new Llamada(8, cliente8, ce_llamada8, respuestas8, new TimeSpan(0, 4, 11), true);
+            Llamada llamada9 = new Llamada(9, cliente9, ce_llamada9, respuestas9, new TimeSpan(0, 0, 38), true);
+            Llamada llamada10 = new Llamada(10, cliente10, ce_llamada10, respuestas10, new TimeSpan(0, 0, 52), true);
+            Llamada llamada11 = new Llamada(11, cliente11, ce_llamada11, respuestas11, new TimeSpan(0, 2, 20), true);
+            Llamada llamada12 = new Llamada(12, cliente12, ce_llamada12, respuestas12, new TimeSpan(0, 7, 33), true);
+            Llamada llamada13 = new Llamada(13, cliente13, ce_llamada13, respuestas13, new TimeSpan(0, 0, 45), true);
+            Llamada llamada14 = new Llamada(14, cliente14, ce_llamada14, respuestas14, new TimeSpan(0, 2, 10), true);
+            Llamada llamada15 = new Llamada(15, cliente15, ce_llamada15, respuestas15, new TimeSpan(0, 5, 11), true);
+            Llamada llamada16 = new Llamada(16, cliente16, ce_llamada16, respuestas16, new TimeSpan(0, 8, 28), true);
+            Llamada llamada17 = new Llamada(17, cliente17, ce_llamada17, respuestas17, new TimeSpan(0, 2, 7), true);
 
             llamadas = new List<Llamada> { llamada1, llamada2, llamada3, llamada4, llamada5, llamada6, llamada7, llamada8, llamada9, llamada10, llamada11, llamada12, llamada13, llamada14, llamada15, llamada16, llamada17 };
         }

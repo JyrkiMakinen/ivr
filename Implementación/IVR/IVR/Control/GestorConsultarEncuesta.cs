@@ -12,8 +12,6 @@ namespace IVR.Control
     {
         private DateTime fechaInicioPeriodo;
         private DateTime fechaFinPeriodo;
-        private string nombreCliente;
-        private TimeSpan duracion;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
 
@@ -40,6 +38,7 @@ namespace IVR.Control
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
             List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
             List<DateTime> fechasYHorasDeLlamadasConEncResp = new List<DateTime>();
+            //List<String> listClientes = new List<string>;
             foreach (Llamada llamada in listLlamadas)
             {
                 if (llamada.tieneEncuestasRespondidas())
@@ -47,7 +46,8 @@ namespace IVR.Control
                     if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo))
                     {
                         llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
-                        fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio()); //Cambiar en el diag de secuencia, se llama desde el gestor
+                       // fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio());
+                       // listClientes.Add(llamada.get)
                     }
                 }
             } 
@@ -62,15 +62,19 @@ namespace IVR.Control
 
         public void obtenerDatos(Llamada llamadaSeleccionada)
         {
-            this.nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
+            string nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
-            this.duracion = llamadaSeleccionada.calcularDuracion();
+            TimeSpan duracion = llamadaSeleccionada.getDuracion();
+            List<RespuestaDeCliente> respuestasCliente = llamadaSeleccionada.getRespuestas();
+            String descripcionEncuesta = "Descripcion encuesta"; //corregir aca
+
+            Dictionary<string, string> diccionario = new Dictionary<string, string>();
+            diccionario.Add("¿hay sol?", "si");
+            diccionario.Add("Sos lindo?", "no");
 
 
-            llamadaSeleccionada.getRespuestas();
-
-            pantallaConsultarEncuesta.mostrarEncuesta();
-            pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacon();
+            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, descripcionEncuesta, diccionario);
+            pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacion();
         }
 
         public void tomarSeleccionFormaVisualizacion(string formaVisualizacion)

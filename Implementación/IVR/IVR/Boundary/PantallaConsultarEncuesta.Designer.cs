@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
@@ -148,7 +150,8 @@
             this.cmbLlamada.FormattingEnabled = true;
             this.cmbLlamada.Location = new System.Drawing.Point(301, 90);
             this.cmbLlamada.Name = "cmbLlamada";
-            this.cmbLlamada.Size = new System.Drawing.Size(258, 32);
+            this.cmbLlamada.Size = new System.Drawing.Size(380, 32);
+            this.cmbLlamada.Sorted = true;
             this.cmbLlamada.TabIndex = 6;
             this.cmbLlamada.SelectedIndexChanged += new System.EventHandler(this.tomarSeleccionLlamada);
             // 
@@ -330,13 +333,25 @@
             // 
             // grdEncuesta
             // 
+            this.grdEncuesta.CausesValidation = false;
             this.grdEncuesta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdEncuesta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.preguntas,
             this.respuestas});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.grdEncuesta.DefaultCellStyle = dataGridViewCellStyle1;
             this.grdEncuesta.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grdEncuesta.GridColor = System.Drawing.SystemColors.Control;
             this.grdEncuesta.Location = new System.Drawing.Point(0, 253);
             this.grdEncuesta.Name = "grdEncuesta";
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            this.grdEncuesta.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdEncuesta.Size = new System.Drawing.Size(786, 308);
             this.grdEncuesta.TabIndex = 10;
             // 

@@ -2,11 +2,18 @@ namespace IVR.Entity
 {
     public class Cliente
     {
-        private string nombre { get; set; }
+        private string nombre;
 
-        public string getNombre() {
-            return this.nombre;
+        public Cliente(string nombre) {
+            this.nombre = nombre;
         }
 
+        public string getNombre() {
+            return nombre;
+        }
+
+        public void setNombre(string nombre) {
+            this.nombre = nombre;
+        }
     }
 }

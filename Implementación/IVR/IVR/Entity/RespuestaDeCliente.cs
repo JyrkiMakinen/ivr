@@ -15,15 +15,7 @@ namespace IVR.Entity
         }
 
         public string obtenerDescripcionRta() {
-            return this.respuestaPosible.getDescripcion();
-        }
-
-        public string obtenerDescripcionPregunta() {
-           return this.respuestaPosible.obtenerDescripcionPregunta();
-        }
-
-        public string obtenerDescripcionEncuesta() {
-            return this.respuestaPosible.obtenerDescripcionEncuesta();
+            return this.respuestaPosible.obtenerDescripcionRta();
         }
     }
 }
