@@ -5,23 +5,21 @@ namespace IVR.Entity
 {
     public class Llamada
     {
-        private string ultimoCambioEstado;
-        private Cliente cliente { get; set; }
+        private Cliente cliente;
         private TimeSpan duracion;
         private bool encuestaEnviada;
         private List<RespuestaDeCliente> respuestasCliente;
         private List<CambioEstado> cambiosDeEstado;
-        private bool v;
-        private long id; // { get; set; }
+        private long id;
 
-        public Llamada(long id, Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool v)
+        public Llamada(long id, Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool encuestaEnviada)
         {
             this.id = id;
             this.cliente = cliente;
             this.cambiosDeEstado = cambiosDeEstado;
             this.respuestasCliente = respuestasCliente;
             this.duracion = duracion;
-            this.v = v;
+            this.encuestaEnviada = encuestaEnviada;
         }
 
         public bool tieneEncuestasRespondidas()
@@ -75,7 +73,7 @@ namespace IVR.Entity
             return "Not Found";
         }
 
-        public List<RespuestaDeCliente> getRespuestas() // Que deberia devolver? Un arreglo con todos los datos?
+        public List<RespuestaDeCliente> getRespuestas()
         {
            return respuestasCliente;
         }

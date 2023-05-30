@@ -12,8 +12,6 @@ namespace IVR.Control
     {
         private DateTime fechaInicioPeriodo;
         private DateTime fechaFinPeriodo;
-        private string nombreCliente;
-        private TimeSpan duracion;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
 
@@ -64,12 +62,18 @@ namespace IVR.Control
 
         public void obtenerDatos(Llamada llamadaSeleccionada)
         {
-            nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
+            string nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
-            duracion = llamadaSeleccionada.getDuracion();
+            TimeSpan duracion = llamadaSeleccionada.getDuracion();
             List<RespuestaDeCliente> respuestasCliente = llamadaSeleccionada.getRespuestas();
+            String descripcionEncuesta = "Descripcion encuesta"; //corregir aca
 
-            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, respuestasCliente);
+            Dictionary<string, string> diccionario = new Dictionary<string, string>();
+            diccionario.Add("¿hay sol?", "si");
+            diccionario.Add("Sos lindo?", "no");
+
+
+            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, descripcionEncuesta, diccionario);
             pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacion();
         }
 

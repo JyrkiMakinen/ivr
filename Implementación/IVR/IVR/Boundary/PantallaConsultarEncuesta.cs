@@ -50,11 +50,9 @@ namespace IVR.Boundary
         public void solicitarSeleccionLlamada(List<Llamada> llamadas)
         {
            this.llamadas = llamadas;
-           isComboBoxLoading = true;
-           cmbLlamada.DataSource = llamadas.Select(llamada => new { Id = llamada.getId(), Cliente = llamada.getNombreClienteDeLlamada()}).ToList();
+           cmbLlamada.DataSource = llamadas.Select(llamada => new { Id = llamada.getId(), Cliente = llamada.getFechaHoraInicio() + " - " + llamada.getNombreClienteDeLlamada()}).ToList();
            cmbLlamada.DisplayMember = "Cliente";
            cmbLlamada.ValueMember = "Id";
-           isComboBoxLoading = false;
         }
 
         private void tomarSeleccionLlamada(object sender, EventArgs e)
@@ -62,29 +60,31 @@ namespace IVR.Boundary
             dynamic selectedItem = cmbLlamada.SelectedItem;
             long idLlamada = selectedItem.Id;
             
-            if (idLlamada != null)
+            foreach (Llamada llamada in llamadas)
             {
-                foreach (Llamada llamada in llamadas)
+                if (llamada.getId() == idLlamada)
                 {
-                    if (llamada.getId() == idLlamada)
-                    {
-                        gestor.tomarSeleccionLlamada(llamada);
-                    }
+                    gestor.tomarSeleccionLlamada(llamada);
                 }
             }
+            
         }
 
-        private void tomarSeleccionLlamada_SelectedIndexChanged(object sender, EventArgs e)
+        public void mostrarEncuesta(string nombreCliente, string estadoActual, TimeSpan duracion, String encuesta, Dictionary<string, string> diccionario)
         {
-            if (isComboBoxLoading)
+            lblCliente.Text = nombreCliente;
+            lblEstado.Text = estadoActual;
+            lblDuracion.Text = duracion.ToString(@"hh\:mm\:ss"); ;
+            lblEncuesta.Text = encuesta;
+            
+            // Llenar el DataGridView con el Dictionary
+            foreach (var item in diccionario)
             {
-                return; // Salir del evento sin realizar ninguna acción
+                grdEncuesta.Rows.Add(item.Key, item.Value);
             }
-        }
 
-        public void mostrarEncuesta(string nombreCliente, string estadoActual, TimeSpan duracion, List<RespuestaDeCliente> respuestas)
-        {
-            // Recibo todos los datos que me van a mandar los wachines del gestor
+            cmbFormaVisualizacion.Enabled = true;
+
         }
 
         public void solicitarSeleccionFormaVisualizacion()
