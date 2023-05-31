@@ -4,8 +4,9 @@ using IVR.Entity;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
-using System.Windows.Forms;
+using System.Text;
 
 namespace IVR.Control
 {
@@ -16,6 +17,8 @@ namespace IVR.Control
         private DateTime fechaFinPeriodo;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
+        DataTable preguntasYrespuestas;
+        string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
         {
@@ -63,12 +66,12 @@ namespace IVR.Control
 
         public void obtenerDatosLlamada(Llamada llamadaSeleccionada)
         {
-            string nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
+            nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
             TimeSpan duracion = llamadaSeleccionada.getDuracion();
 
             // En esta tabla van a ir las preguntas y respuestas. Se crea vacía con dos columnas
-            DataTable preguntasYrespuestas = new DataTable();
+            preguntasYrespuestas = new DataTable();
             preguntasYrespuestas.Columns.Add("preguntas");
             preguntasYrespuestas.Columns.Add("respuestas");
 
@@ -97,15 +100,35 @@ namespace IVR.Control
 
         public void generarCsv()
         {
-            //generar el csv
+            // Definir la ruta relativa y el nombre del archivo CSV
+            string csvFilePath = @"..\....\..\..\..\..\Encuesta_" + nombreCliente + ".csv";
+            
+            using (FileStream fileStream = new FileStream(csvFilePath, FileMode.Create, FileAccess.Write))
+            {
+                using (StreamWriter writer = new StreamWriter(fileStream, Encoding.UTF8))
+                {
+                    // Escribir una línea de encabezado en el archivo CSV
+                    writer.WriteLine("Preguntas,Respuestas");
 
+                    foreach (DataRow row in preguntasYrespuestas.Rows)
+                    {
+                        // Obtener los valores de las columnas de la fila actual
+                        string[] fields = row.ItemArray.Select(field => field.ToString()).ToArray();
+
+                        // Escribir los valores en el archivo CSV
+                        writer.WriteLine(string.Join(",", fields));
+                    }
+
+                    Console.WriteLine("Archivo CSV generado exitosamente.");
+                }
+            }
 
             finCU();
         }
 
         public void finCU()
         {
-            
+            pantallaConsultarEncuesta.Close();
         }
 
 
