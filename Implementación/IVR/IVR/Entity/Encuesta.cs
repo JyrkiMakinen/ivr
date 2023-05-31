@@ -16,15 +16,6 @@ namespace IVR.Entity
             this.fechaFinVigencia = fechaFinVigencia;
         }
 
-        public List<Pregunta> getPreguntas() {
-            return preguntas;
-        }
-
-        public void setPreguntas(List<Pregunta> preguntas)
-        {
-            this.preguntas = preguntas;
-        }
-
         public bool esTuPregunta(Pregunta pregunta)
         {
             if (preguntas.Contains(pregunta))

@@ -15,14 +15,6 @@ namespace IVR.Entity
             this.valor = valor;
         }
 
-        public string getDescripcion() {
-            return descripcion;
-        }
-
-        public void setDescripcion(string descripcion) {
-            this.descripcion = descripcion;
-        }
-
         public void obtenerDescripcionRta(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
             string descPregunta = "";

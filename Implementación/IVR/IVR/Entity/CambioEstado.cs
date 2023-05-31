@@ -14,9 +14,14 @@ namespace IVR.Entity
             this.estado = estado;
         }
 
-        public bool esEstadoInicial()
+        public bool esEstadoIniciada()
         {
             return estado.esIniciada();
+        }
+
+        public DateTime getFechaHoraInicio()
+        {
+            return fechaHoraInicio;
         }
 
         public bool esUltimoEstado()
@@ -28,12 +33,10 @@ namespace IVR.Entity
             return false;
         }
 
-        public string getNombreEstado() {
+        public string getNombreEstado()
+        {
             return estado.getNombre();
         }
 
-        public DateTime getFechaHoraInicio() {
-            return this.fechaHoraInicio;
-        }
     }
 }

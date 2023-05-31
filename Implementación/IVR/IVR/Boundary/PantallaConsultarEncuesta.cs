@@ -10,11 +10,8 @@ namespace IVR.Boundary
 {
     public partial class PantallaConsultarEncuesta : Form
     {
-        private DateTime fechaInicio;
-        private DateTime fechaFin;
         private GestorConsultarEncuesta gestor;
         private List<Llamada> llamadas;
-        private bool isComboBoxLoading;
 
         public PantallaConsultarEncuesta()
         {
@@ -84,8 +81,8 @@ namespace IVR.Boundary
         {
             if (cmbFormaVisualizacion.SelectedIndex == 0) 
             {
-                gestor.generarCsv();
                 MessageBox.Show("¡Archivo generado exitosamente!", "Atención");
+                gestor.generarCsv();
             }
             else if (cmbFormaVisualizacion.SelectedIndex == -1)
             {

@@ -31,7 +31,7 @@ namespace IVR.Entity
             inicial = null;
             for (int i = 0; i < cambiosDeEstado.Count; i++)
             {
-                if (cambiosDeEstado[i].esEstadoInicial())
+                if (cambiosDeEstado[i].esEstadoIniciada())
                 {
                     if (cambiosDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambiosDeEstado[i].getFechaHoraInicio() < fechaFinPeriodo)
                     {
@@ -42,18 +42,6 @@ namespace IVR.Entity
             }
 
             return false;
-        }
-
-        public DateTime getFechaHoraInicio()
-        {
-            foreach (CambioEstado cambioEstado in cambiosDeEstado)
-            {
-                if (cambioEstado.esEstadoInicial())
-                {
-                    return cambioEstado.getFechaHoraInicio();
-                }
-            }
-            throw new Exception();
         }
 
         public string getNombreClienteDeLlamada()
@@ -73,17 +61,17 @@ namespace IVR.Entity
             return "Not Found";
         }
 
+        public TimeSpan getDuracion()
+        {
+            return duracion;
+        }
+
         public void obtenerPreguntasYRespuestas(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
             foreach (RespuestaDeCliente respCli in respuestasCliente)
             {
                 respCli.obtenerDescripcionRta(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);
             }
-        }
-
-        public TimeSpan getDuracion()
-        {
-            return duracion;
         }
     }
 }

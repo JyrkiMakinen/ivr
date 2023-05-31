@@ -13,12 +13,13 @@ namespace IVR.Entity
             this.respuestasPosibles = respuestasPosibles;
         }
 
-        public List<RespuestaPosible> getRespuestasPosibles() {
-            return respuestasPosibles;
-        }
-
-        public void setRespuestasPosibles(List<RespuestaPosible> respuestasPosibles) {
-            this.respuestasPosibles = respuestasPosibles;
+        public bool esTuRespuesta(RespuestaPosible respuesta)
+        {
+            if (respuestasPosibles.Contains(respuesta))
+            {
+                return true;
+            }
+            return false;
         }
 
         public string obtenerDescripcionPregunta(ref string descripcionEncuesta, List<Encuesta> allEncuestas) 
@@ -33,15 +34,6 @@ namespace IVR.Entity
             }
 
             return descripcion;
-        }
-
-        public bool esTuRespuesta(RespuestaPosible respuesta)
-        {
-            if (respuestasPosibles.Contains(respuesta))
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

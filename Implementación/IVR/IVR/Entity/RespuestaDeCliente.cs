@@ -7,7 +7,6 @@ namespace IVR.Entity
     public class RespuestaDeCliente
     {
         private RespuestaPosible respuestaSeleccionada;
-        private DateTime fechaEncuesta; // Crearlas en el generador
 
         public RespuestaDeCliente(RespuestaPosible respuestaSeleccionada)
         {

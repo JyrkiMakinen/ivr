@@ -118,8 +118,6 @@ namespace IVR.Control
                         // Escribir los valores en el archivo CSV
                         writer.WriteLine(string.Join(",", fields));
                     }
-
-                    Console.WriteLine("Archivo CSV generado exitosamente.");
                 }
             }
 
@@ -131,26 +129,6 @@ namespace IVR.Control
             pantallaConsultarEncuesta.Close();
         }
 
-
-        public void setFechaInicioPeriodo(DateTime dateTime)
-        {
-            this.fechaInicioPeriodo = dateTime;
-        }
-
-        public void setFechaFinPeriodo(DateTime dateTime)
-        {
-            this.fechaFinPeriodo = dateTime;
-        }
-
-        public DateTime setFechaInicioPeriodo()
-        {
-            return this.fechaInicioPeriodo;
-        }
-
-        public DateTime setFechaFinPeriodo()
-        {
-            return this.fechaFinPeriodo;
-        }
 
     }
 }

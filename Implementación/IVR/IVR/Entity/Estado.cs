@@ -12,16 +12,11 @@ namespace IVR.Entity
 
         public bool esIniciada()
         {
-            return this.getNombre() == "Iniciada";
-        }
-
-        public bool esFinalizada()
-        {
-            return this.getNombre() == "Finalizada";
+            return getNombre() == "Iniciada";
         }
 
         public string getNombre() {
-            return this.nombre;
+            return nombre;
         }
     }
 }
