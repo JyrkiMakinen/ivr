@@ -17,8 +17,8 @@ namespace IVR.Control
         private DateTime fechaFinPeriodo;
         private PantallaConsultarEncuesta pantallaConsultarEncuesta;
         private GeneradorDeDatos generadorDeDatos;
-        DataTable preguntasYrespuestas;
-        string nombreCliente;
+        private DataTable preguntasYrespuestas;
+        private string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
         {
