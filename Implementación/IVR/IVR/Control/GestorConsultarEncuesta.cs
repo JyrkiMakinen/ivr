@@ -101,7 +101,7 @@ namespace IVR.Control
         public void generarCsv()
         {
             // Definir la ruta relativa y el nombre del archivo CSV
-            string csvFilePath = @"..\....\..\..\..\..\Encuesta_" + nombreCliente + ".csv";
+            string csvFilePath = @"..\..\..\..\..\..\Encuesta_" + nombreCliente + ".csv";
             
             using (FileStream fileStream = new FileStream(csvFilePath, FileMode.Create, FileAccess.Write))
             {
