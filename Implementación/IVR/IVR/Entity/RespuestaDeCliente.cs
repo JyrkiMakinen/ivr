@@ -1,21 +1,22 @@
 using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace IVR.Entity
 {
     public class RespuestaDeCliente
     {
+        private RespuestaPosible respuestaSeleccionada;
+        private DateTime fechaEncuesta; // Crearlas en el generador
 
-        private RespuestaPosible respuestaPosible;
-        private DateTime fechaEncuesta;
-        private string descripcion;
-
-        public RespuestaDeCliente(RespuestaPosible respuestaPosible)
+        public RespuestaDeCliente(RespuestaPosible respuestaSeleccionada)
         {
-            this.respuestaPosible = respuestaPosible;
+            this.respuestaSeleccionada = respuestaSeleccionada;
         }
 
-        public string obtenerDescripcionRta() {
-            return this.respuestaPosible.obtenerDescripcionRta();
+        public void obtenerDescripcionRta(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
+        {
+            respuestaSeleccionada.obtenerDescripcionRta(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);
         }
     }
 }

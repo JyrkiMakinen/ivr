@@ -3,7 +3,9 @@ using IVR.Datos;
 using IVR.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace IVR.Control
 {
@@ -17,8 +19,8 @@ namespace IVR.Control
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
         {
-            this.generadorDeDatos = new GeneradorDeDatos();
-            this.pantallaConsultarEncuesta = pantalla;
+            generadorDeDatos = new GeneradorDeDatos();
+            pantallaConsultarEncuesta = pantalla;
         }
 
         public void opcionConsultarEncuesta()
@@ -28,8 +30,8 @@ namespace IVR.Control
         
         public void tomarPeriodo(DateTime fechaInicio, DateTime fechaFin)
         {
-            this.fechaInicioPeriodo = fechaInicio;
-            this.fechaFinPeriodo = fechaFin;
+            fechaInicioPeriodo = fechaInicio;
+            fechaFinPeriodo = fechaFin;
             buscarLlamadasConEncRespondidas();
         }
 
@@ -37,43 +39,51 @@ namespace IVR.Control
         {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
             List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
-            List<DateTime> fechasYHorasDeLlamadasConEncResp = new List<DateTime>();
-            //List<String> listClientes = new List<string>;
+            List<string> etiquetasLlamadas = new List<string>();
             foreach (Llamada llamada in listLlamadas)
             {
                 if (llamada.tieneEncuestasRespondidas())
                 {
-                    if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo))
+                    if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo, out CambioEstado inicial))
                     {
                         llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
-                       // fechasYHorasDeLlamadasConEncResp.Add(llamada.getFechaHoraInicio());
-                       // listClientes.Add(llamada.get)
+
+                        string etiqueta = llamada.getNombreClienteDeLlamada() + " - " + inicial.getFechaHoraInicio().ToString();
+                        etiquetasLlamadas.Add(etiqueta);
                     }
                 }
             } 
-            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo);
+            pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, etiquetasLlamadas);
         }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)
         {
-            obtenerDatos(llamadaSeleccionada);
+            obtenerDatosLlamada(llamadaSeleccionada);
         }
 
-
-        public void obtenerDatos(Llamada llamadaSeleccionada)
+        public void obtenerDatosLlamada(Llamada llamadaSeleccionada)
         {
             string nombreCliente = llamadaSeleccionada.getNombreClienteDeLlamada();
             string estadoActual = llamadaSeleccionada.getEstadoActual();
             TimeSpan duracion = llamadaSeleccionada.getDuracion();
-            List<RespuestaDeCliente> respuestasCliente = llamadaSeleccionada.getRespuestas();
-            String descripcionEncuesta = "Descripcion encuesta"; //corregir aca
 
-            Dictionary<string, string> diccionario = new Dictionary<string, string>();
-            diccionario.Add("¿hay sol?", "si");
-            diccionario.Add("Sos lindo?", "no");
+            // En esta tabla van a ir las preguntas y respuestas. Se crea vacía con dos columnas
+            DataTable preguntasYrespuestas = new DataTable();
+            preguntasYrespuestas.Columns.Add("preguntas");
+            preguntasYrespuestas.Columns.Add("respuestas");
 
+            // Aquí se va a guardar la descripción de la encuesta
+            string descripcionEncuesta = "";
 
-            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, descripcionEncuesta, diccionario);
+            // Todas las preguntas, para que las respuestas encuentren cuál es su pregunta
+            List<Pregunta> allPreguntas = generadorDeDatos.getPreguntas();
+
+            //Todas las encuestas, para que las preguntas encuentren cuál es su encuesta
+            List<Encuesta> allEncuestas = generadorDeDatos.getEncuestas();
+
+            llamadaSeleccionada.obtenerPreguntasYRespuestas(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);
+
+            pantallaConsultarEncuesta.mostrarEncuesta(nombreCliente, estadoActual, duracion, descripcionEncuesta, preguntasYrespuestas);
             pantallaConsultarEncuesta.solicitarSeleccionFormaVisualizacion();
         }
 

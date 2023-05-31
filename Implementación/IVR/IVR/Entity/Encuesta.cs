@@ -5,19 +5,15 @@ namespace IVR.Entity
 {
     public class Encuesta
     {
-        private List<Pregunta> preguntas;
-        private DateTime dateTime;
         private string descripcion;
+        private List<Pregunta> preguntas;
+        private DateTime fechaFinVigencia;
 
-        public Encuesta(string descripcion)
+        public Encuesta(string descripcion, List<Pregunta> preguntas, DateTime fechaFinVigencia)
         {
             this.descripcion = descripcion;
-        }
-
-        public Encuesta(string descripcion, DateTime dateTime)
-        {
-            this.descripcion = descripcion;
-            this.dateTime = dateTime;
+            this.preguntas = preguntas;
+            this.fechaFinVigencia = fechaFinVigencia;
         }
 
         public List<Pregunta> getPreguntas() {
@@ -29,7 +25,17 @@ namespace IVR.Entity
             this.preguntas = preguntas;
         }
 
-        public string getDescripcionEncuesta() {
+        public bool esTuPregunta(Pregunta pregunta)
+        {
+            if (preguntas.Contains(pregunta))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public string getDescripcionEncuesta()
+        {
             return descripcion;
         }
     }

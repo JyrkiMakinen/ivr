@@ -3,14 +3,14 @@ namespace IVR.Entity
 {
     public class CambioEstado
     {
-
         private DateTime fechaHoraInicio { get; set; }
-        private DateTime fechaHoraFin { get; set; }
+        private DateTime? fechaHoraFin { get; set; }
         private Estado estado { get; set; }
 
-        public CambioEstado(DateTime fechaHoraInicio, Estado estado)
+        public CambioEstado(DateTime fechaHoraInicio, DateTime? fechaHoraFin, Estado estado)
         {
             this.fechaHoraInicio = fechaHoraInicio;
+            this.fechaHoraFin = fechaHoraFin;
             this.estado = estado;
         }
 
@@ -21,7 +21,11 @@ namespace IVR.Entity
 
         public bool esUltimoEstado()
         {
-            return estado.esFinalizada();
+            if (fechaHoraFin == null)
+            {
+                return true;
+            }
+            return false;
         }
 
         public string getNombreEstado() {

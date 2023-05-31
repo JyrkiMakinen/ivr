@@ -2,6 +2,7 @@
 using IVR.Entity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -39,49 +40,36 @@ namespace IVR.Boundary
 
         public void tomarFechaInicio(object sender, EventArgs e)
         {
-            gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
+            gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value); // No está en la secuencia. Nos tomamos esta licencia para que se actualicen las llamadas si el usuario cambia la fecha inicio después de elegir la fecha fin
         }
 
-        public void tomarFechaFin()
+        public void tomarFechaFin(object sender, EventArgs e)
         {
             gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
         }
 
-        public void solicitarSeleccionLlamada(List<Llamada> llamadas)
+        public void solicitarSeleccionLlamada(List<Llamada> llamadas, List<string> etiquetas)
         {
-           this.llamadas = llamadas;
-           cmbLlamada.DataSource = llamadas.Select(llamada => new { Id = llamada.getId(), Cliente = llamada.getFechaHoraInicio() + " - " + llamada.getNombreClienteDeLlamada()}).ToList();
-           cmbLlamada.DisplayMember = "Cliente";
-           cmbLlamada.ValueMember = "Id";
+            this.llamadas = llamadas;
+            cmbLlamada.DataSource = etiquetas;
         }
 
         private void tomarSeleccionLlamada(object sender, EventArgs e)
         {
-            dynamic selectedItem = cmbLlamada.SelectedItem;
-            long idLlamada = selectedItem.Id;
-            
-            foreach (Llamada llamada in llamadas)
-            {
-                if (llamada.getId() == idLlamada)
-                {
-                    gestor.tomarSeleccionLlamada(llamada);
-                }
-            }
-            
+            int indiceLlamada = cmbLlamada.SelectedIndex;
+            Llamada llamadaSeleccionada = llamadas[indiceLlamada]; // Recupero el objeto Llamada según el índice del cmb elegido.
+
+            gestor.tomarSeleccionLlamada(llamadaSeleccionada);
         }
 
-        public void mostrarEncuesta(string nombreCliente, string estadoActual, TimeSpan duracion, String encuesta, Dictionary<string, string> diccionario)
+        public void mostrarEncuesta(string nombreCliente, string estadoActual, TimeSpan duracion, String encuesta, DataTable preguntasYrespuestas)
         {
             lblCliente.Text = nombreCliente;
             lblEstado.Text = estadoActual;
             lblDuracion.Text = duracion.ToString(@"hh\:mm\:ss"); ;
             lblEncuesta.Text = encuesta;
             
-            // Llenar el DataGridView con el Dictionary
-            foreach (var item in diccionario)
-            {
-                grdEncuesta.Rows.Add(item.Key, item.Value);
-            }
+            grdEncuesta.DataSource = preguntasYrespuestas;
 
             cmbFormaVisualizacion.Enabled = true;
 

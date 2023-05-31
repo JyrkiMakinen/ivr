@@ -37,9 +37,9 @@
             this.dtpFin = new System.Windows.Forms.DateTimePicker();
             this.lblFechaFin = new System.Windows.Forms.Label();
             this.lblLlamada = new System.Windows.Forms.Label();
-            this.cmbLlamada = new System.Windows.Forms.ComboBox();
             this.lblClienteInfo = new System.Windows.Forms.Label();
             this.pnlPeriodo = new System.Windows.Forms.Panel();
+            this.cmbLlamada = new System.Windows.Forms.ComboBox();
             this.pnlInfo = new System.Windows.Forms.Panel();
             this.pnlCsv = new System.Windows.Forms.Panel();
             this.btnGenerar = new System.Windows.Forms.Button();
@@ -65,7 +65,7 @@
             // 
             // pnlTitulo
             // 
-            this.pnlTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(120)))), ((int)(((byte)(55)))));
+            this.pnlTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(140)))), ((int)(((byte)(55)))));
             this.pnlTitulo.Controls.Add(this.lblTitulo);
             this.pnlTitulo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitulo.Location = new System.Drawing.Point(0, 0);
@@ -125,6 +125,7 @@
             this.dtpFin.Size = new System.Drawing.Size(133, 27);
             this.dtpFin.TabIndex = 4;
             this.dtpFin.Value = new System.DateTime(2023, 6, 28, 11, 8, 0, 0);
+            this.dtpFin.ValueChanged += new System.EventHandler(this.tomarFechaFin);
             // 
             // lblFechaFin
             // 
@@ -145,16 +146,6 @@
             this.lblLlamada.TabIndex = 5;
             this.lblLlamada.Text = "Seleccione una llamada:";
             // 
-            // cmbLlamada
-            // 
-            this.cmbLlamada.FormattingEnabled = true;
-            this.cmbLlamada.Location = new System.Drawing.Point(301, 90);
-            this.cmbLlamada.Name = "cmbLlamada";
-            this.cmbLlamada.Size = new System.Drawing.Size(380, 32);
-            this.cmbLlamada.Sorted = true;
-            this.cmbLlamada.TabIndex = 6;
-            this.cmbLlamada.SelectedIndexChanged += new System.EventHandler(this.tomarSeleccionLlamada);
-            // 
             // lblClienteInfo
             // 
             this.lblClienteInfo.AutoSize = true;
@@ -167,9 +158,9 @@
             // 
             // pnlPeriodo
             // 
+            this.pnlPeriodo.Controls.Add(this.cmbLlamada);
             this.pnlPeriodo.Controls.Add(this.lblFechaInicio);
             this.pnlPeriodo.Controls.Add(this.dtpInicio);
-            this.pnlPeriodo.Controls.Add(this.cmbLlamada);
             this.pnlPeriodo.Controls.Add(this.lblFechaFin);
             this.pnlPeriodo.Controls.Add(this.lblLlamada);
             this.pnlPeriodo.Controls.Add(this.dtpFin);
@@ -178,6 +169,16 @@
             this.pnlPeriodo.Name = "pnlPeriodo";
             this.pnlPeriodo.Size = new System.Drawing.Size(786, 153);
             this.pnlPeriodo.TabIndex = 8;
+            // 
+            // cmbLlamada
+            // 
+            this.cmbLlamada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLlamada.FormattingEnabled = true;
+            this.cmbLlamada.Location = new System.Drawing.Point(301, 90);
+            this.cmbLlamada.Name = "cmbLlamada";
+            this.cmbLlamada.Size = new System.Drawing.Size(380, 32);
+            this.cmbLlamada.TabIndex = 6;
+            this.cmbLlamada.SelectedIndexChanged += new System.EventHandler(this.tomarSeleccionLlamada);
             // 
             // pnlInfo
             // 
@@ -212,8 +213,8 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(120)))), ((int)(((byte)(55)))));
-            this.btnGenerar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(100)))), ((int)(((byte)(45)))));
+            this.btnGenerar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(250)))), ((int)(((byte)(140)))), ((int)(((byte)(55)))));
+            this.btnGenerar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(110)))), ((int)(((byte)(45)))));
             this.btnGenerar.FlatAppearance.BorderSize = 3;
             this.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -333,6 +334,9 @@
             // 
             // grdEncuesta
             // 
+            this.grdEncuesta.AllowUserToAddRows = false;
+            this.grdEncuesta.AllowUserToDeleteRows = false;
+            this.grdEncuesta.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.grdEncuesta.CausesValidation = false;
             this.grdEncuesta.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdEncuesta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -340,8 +344,8 @@
             this.respuestas});
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 13.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -350,6 +354,7 @@
             this.grdEncuesta.GridColor = System.Drawing.SystemColors.Control;
             this.grdEncuesta.Location = new System.Drawing.Point(0, 253);
             this.grdEncuesta.Name = "grdEncuesta";
+            this.grdEncuesta.ReadOnly = true;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             this.grdEncuesta.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.grdEncuesta.Size = new System.Drawing.Size(786, 308);
@@ -358,15 +363,20 @@
             // preguntas
             // 
             this.preguntas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.preguntas.DataPropertyName = "preguntas";
+            this.preguntas.FillWeight = 60F;
             this.preguntas.HeaderText = "Preguntas";
             this.preguntas.Name = "preguntas";
+            this.preguntas.ReadOnly = true;
             // 
             // respuestas
             // 
             this.respuestas.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.respuestas.FillWeight = 30F;
+            this.respuestas.DataPropertyName = "respuestas";
+            this.respuestas.FillWeight = 40F;
             this.respuestas.HeaderText = "Respuestas";
             this.respuestas.Name = "respuestas";
+            this.respuestas.ReadOnly = true;
             // 
             // PantallaConsultarEncuesta
             // 
@@ -404,7 +414,6 @@
         private System.Windows.Forms.DateTimePicker dtpFin;
         private System.Windows.Forms.Label lblFechaFin;
         private System.Windows.Forms.Label lblLlamada;
-        private System.Windows.Forms.ComboBox cmbLlamada;
         private System.Windows.Forms.Label lblClienteInfo;
         private System.Windows.Forms.Panel pnlPeriodo;
         private System.Windows.Forms.Panel pnlInfo;
@@ -417,11 +426,12 @@
         private System.Windows.Forms.Label lblCliente;
         private System.Windows.Forms.Label lblInformacion;
         private System.Windows.Forms.DataGridView grdEncuesta;
-        private System.Windows.Forms.DataGridViewTextBoxColumn preguntas;
-        private System.Windows.Forms.DataGridViewTextBoxColumn respuestas;
         private System.Windows.Forms.Panel pnlCsv;
         private System.Windows.Forms.Button btnGenerar;
         private System.Windows.Forms.ComboBox cmbFormaVisualizacion;
         private System.Windows.Forms.Label lblVisualizacion;
+        private System.Windows.Forms.ComboBox cmbLlamada;
+        private System.Windows.Forms.DataGridViewTextBoxColumn preguntas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn respuestas;
     }
 }

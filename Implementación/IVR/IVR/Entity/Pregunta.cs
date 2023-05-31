@@ -6,11 +6,11 @@ namespace IVR.Entity
     {
         private string descripcion;
         private List<RespuestaPosible> respuestasPosibles;
-        private Encuesta encuesta;
 
-        public Pregunta(string descripcion, Encuesta encuesta){
-            this.encuesta = encuesta;
+        public Pregunta(string descripcion, List<RespuestaPosible> respuestasPosibles)
+        {
             this.descripcion = descripcion;
+            this.respuestasPosibles = respuestasPosibles;
         }
 
         public List<RespuestaPosible> getRespuestasPosibles() {
@@ -21,8 +21,27 @@ namespace IVR.Entity
             this.respuestasPosibles = respuestasPosibles;
         }
 
-        public string obtenerDescripcionPregunta() {
-            return encuesta.getDescripcionEncuesta();
+        public string obtenerDescripcionPregunta(ref string descripcionEncuesta, List<Encuesta> allEncuestas) 
+        {
+            foreach (Encuesta encuesta in allEncuestas)
+            {
+                if (encuesta.esTuPregunta(this))
+                {
+                    descripcionEncuesta = encuesta.getDescripcionEncuesta(); // Recién en este punto se obtiene la descripción de la encuesta
+                    break;
+                }
+            }
+
+            return descripcion;
+        }
+
+        public bool esTuRespuesta(RespuestaPosible respuesta)
+        {
+            if (respuestasPosibles.Contains(respuesta))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

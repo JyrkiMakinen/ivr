@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace IVR.Entity
 {
@@ -10,11 +11,9 @@ namespace IVR.Entity
         private bool encuestaEnviada;
         private List<RespuestaDeCliente> respuestasCliente;
         private List<CambioEstado> cambiosDeEstado;
-        private long id;
 
-        public Llamada(long id, Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool encuestaEnviada)
+        public Llamada(Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool encuestaEnviada)
         {
-            this.id = id;
             this.cliente = cliente;
             this.cambiosDeEstado = cambiosDeEstado;
             this.respuestasCliente = respuestasCliente;
@@ -27,20 +26,21 @@ namespace IVR.Entity
             return respuestasCliente.Count > 0; 
         }
 
-        public long getId() {
-            return id;
-        }
-
-        public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo)
+        public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo, out CambioEstado inicial)
         {
-            for (int i = 0; i < cambiosDeEstado.Count; i++) {
-                if (cambiosDeEstado[i].esEstadoInicial()) {
-                    if (cambiosDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambiosDeEstado[i].getFechaHoraInicio() < fechaFinPeriodo) {
+            inicial = null;
+            for (int i = 0; i < cambiosDeEstado.Count; i++)
+            {
+                if (cambiosDeEstado[i].esEstadoInicial())
+                {
+                    if (cambiosDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambiosDeEstado[i].getFechaHoraInicio() < fechaFinPeriodo)
+                    {
+                        inicial = cambiosDeEstado[i];
                         return true;
                     }
                 }
             }
-            
+
             return false;
         }
 
@@ -73,9 +73,12 @@ namespace IVR.Entity
             return "Not Found";
         }
 
-        public List<RespuestaDeCliente> getRespuestas()
+        public void obtenerPreguntasYRespuestas(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
-           return respuestasCliente;
+            foreach (RespuestaDeCliente respCli in respuestasCliente)
+            {
+                respCli.obtenerDescripcionRta(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);
+            }
         }
 
         public TimeSpan getDuracion()
