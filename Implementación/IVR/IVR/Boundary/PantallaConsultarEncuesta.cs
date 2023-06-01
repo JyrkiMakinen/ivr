@@ -93,5 +93,14 @@ namespace IVR.Boundary
                 MessageBox.Show("Funcionalidad no implementada.", "Atención");
             }
         }
+
+        private void tomarCancelacion(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("¿Está seguro que desea cancelar la operación?", "Atención", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                gestor.finCU();
+            }
+        }
     }
 }

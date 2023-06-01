@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlTitulo = new System.Windows.Forms.Panel();
             this.lblTitulo = new System.Windows.Forms.Label();
             this.lblFechaInicio = new System.Windows.Forms.Label();
@@ -56,6 +55,7 @@
             this.grdEncuesta = new System.Windows.Forms.DataGridView();
             this.preguntas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.respuestas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.pnlTitulo.SuspendLayout();
             this.pnlPeriodo.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -202,6 +202,7 @@
             // pnlCsv
             // 
             this.pnlCsv.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.pnlCsv.Controls.Add(this.btnCancelar);
             this.pnlCsv.Controls.Add(this.btnGenerar);
             this.pnlCsv.Controls.Add(this.cmbFormaVisualizacion);
             this.pnlCsv.Controls.Add(this.lblVisualizacion);
@@ -219,7 +220,7 @@
             this.btnGenerar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnGenerar.Location = new System.Drawing.Point(87, 59);
+            this.btnGenerar.Location = new System.Drawing.Point(166, 59);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(217, 39);
             this.btnGenerar.TabIndex = 19;
@@ -342,21 +343,13 @@
             this.grdEncuesta.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.preguntas,
             this.respuestas});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 13.25F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.grdEncuesta.DefaultCellStyle = dataGridViewCellStyle1;
             this.grdEncuesta.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grdEncuesta.GridColor = System.Drawing.SystemColors.Control;
             this.grdEncuesta.Location = new System.Drawing.Point(0, 253);
             this.grdEncuesta.Name = "grdEncuesta";
             this.grdEncuesta.ReadOnly = true;
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
-            this.grdEncuesta.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            this.grdEncuesta.RowsDefaultCellStyle = dataGridViewCellStyle1;
             this.grdEncuesta.Size = new System.Drawing.Size(786, 308);
             this.grdEncuesta.TabIndex = 10;
             // 
@@ -377,6 +370,22 @@
             this.respuestas.HeaderText = "Respuestas";
             this.respuestas.Name = "respuestas";
             this.respuestas.ReadOnly = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.btnCancelar.FlatAppearance.BorderSize = 3;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnCancelar.Location = new System.Drawing.Point(24, 59);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(119, 39);
+            this.btnCancelar.TabIndex = 20;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.tomarCancelacion);
             // 
             // PantallaConsultarEncuesta
             // 
@@ -433,5 +442,6 @@
         private System.Windows.Forms.ComboBox cmbLlamada;
         private System.Windows.Forms.DataGridViewTextBoxColumn preguntas;
         private System.Windows.Forms.DataGridViewTextBoxColumn respuestas;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
