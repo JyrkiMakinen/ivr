@@ -41,6 +41,7 @@
             this.cmbLlamada = new System.Windows.Forms.ComboBox();
             this.pnlInfo = new System.Windows.Forms.Panel();
             this.pnlCsv = new System.Windows.Forms.Panel();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.cmbFormaVisualizacion = new System.Windows.Forms.ComboBox();
             this.lblVisualizacion = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.grdEncuesta = new System.Windows.Forms.DataGridView();
             this.preguntas = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.respuestas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
             this.pnlTitulo.SuspendLayout();
             this.pnlPeriodo.SuspendLayout();
             this.pnlInfo.SuspendLayout();
@@ -178,6 +178,7 @@
             this.cmbLlamada.Name = "cmbLlamada";
             this.cmbLlamada.Size = new System.Drawing.Size(380, 32);
             this.cmbLlamada.TabIndex = 6;
+            this.cmbLlamada.DropDown += new System.EventHandler(this.informarSinLlamadas);
             this.cmbLlamada.SelectedIndexChanged += new System.EventHandler(this.tomarSeleccionLlamada);
             // 
             // pnlInfo
@@ -211,6 +212,22 @@
             this.pnlCsv.Name = "pnlCsv";
             this.pnlCsv.Size = new System.Drawing.Size(398, 110);
             this.pnlCsv.TabIndex = 16;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
+            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
+            this.btnCancelar.FlatAppearance.BorderSize = 3;
+            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
+            this.btnCancelar.Location = new System.Drawing.Point(24, 59);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(119, 39);
+            this.btnCancelar.TabIndex = 20;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.tomarCancelacion);
             // 
             // btnGenerar
             // 
@@ -259,9 +276,8 @@
             this.lblEncuesta.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEncuesta.Location = new System.Drawing.Point(134, 234);
             this.lblEncuesta.Name = "lblEncuesta";
-            this.lblEncuesta.Size = new System.Drawing.Size(249, 24);
+            this.lblEncuesta.Size = new System.Drawing.Size(0, 24);
             this.lblEncuesta.TabIndex = 15;
-            this.lblEncuesta.Text = "[descripcion de la encuesta]";
             // 
             // lblEncuestaInfo
             // 
@@ -279,9 +295,8 @@
             this.lblDuracion.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDuracion.Location = new System.Drawing.Point(134, 189);
             this.lblDuracion.Name = "lblDuracion";
-            this.lblDuracion.Size = new System.Drawing.Size(98, 24);
+            this.lblDuracion.Size = new System.Drawing.Size(0, 24);
             this.lblDuracion.TabIndex = 13;
-            this.lblDuracion.Text = "[duracion]";
             // 
             // lblDuracionInfo
             // 
@@ -299,9 +314,8 @@
             this.lblEstado.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstado.Location = new System.Drawing.Point(114, 143);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(187, 24);
+            this.lblEstado.Size = new System.Drawing.Size(0, 24);
             this.lblEstado.TabIndex = 11;
-            this.lblEstado.Text = "[nombre del estado]";
             // 
             // lblEstadoInfo
             // 
@@ -319,9 +333,8 @@
             this.lblCliente.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCliente.Location = new System.Drawing.Point(114, 98);
             this.lblCliente.Name = "lblCliente";
-            this.lblCliente.Size = new System.Drawing.Size(183, 24);
+            this.lblCliente.Size = new System.Drawing.Size(0, 24);
             this.lblCliente.TabIndex = 9;
-            this.lblCliente.Text = "[nombre del cliente]";
             // 
             // lblInformacion
             // 
@@ -370,22 +383,6 @@
             this.respuestas.HeaderText = "Respuestas";
             this.respuestas.Name = "respuestas";
             this.respuestas.ReadOnly = true;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(75)))), ((int)(((byte)(75)))), ((int)(((byte)(75)))));
-            this.btnCancelar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(65)))), ((int)(((byte)(65)))));
-            this.btnCancelar.FlatAppearance.BorderSize = 3;
-            this.btnCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancelar.Font = new System.Drawing.Font("Microsoft JhengHei UI", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.btnCancelar.Location = new System.Drawing.Point(24, 59);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(119, 39);
-            this.btnCancelar.TabIndex = 20;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = false;
-            this.btnCancelar.Click += new System.EventHandler(this.tomarCancelacion);
             // 
             // PantallaConsultarEncuesta
             // 
