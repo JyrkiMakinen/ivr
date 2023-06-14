@@ -130,8 +130,6 @@ namespace IVR.Boundary
 
         public void limpiarDatos()
         {
-            preguntasYrespuestas.Rows.Clear();
-            grdEncuesta.Update();
             lblCliente.Text = "";
             lblEstado.Text = "";
             lblDuracion.Text = "";
