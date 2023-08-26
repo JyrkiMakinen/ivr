@@ -1,0 +1,11 @@
+1. Tecnología Web // Compatibilidad // SPA
+2. Despliegue en la nube // Compatibilidad // SPA
+3. Reportes en Excel // Compatibilidad // No SPA
+4. Archivos de audio // Compatibilidad // SPA
+5. Notificaciones SMS // Compatibilidad // SPA
+6. IVR con DTMF // Compatibilidad // SPA
+7. BD Oracle 21C // Compatibilidad // SPA
+8. Procesamiento de llamadas (200 llamadas x min) // Eficiencia de desempeño // SPA
+9. Lenguaje de programación Java 16 // Compatibilidad // SPA
+10. Interfaz telefónica // Compatibilidad // SPA
+11. Seguridad de usuarios // Seguridad // SPA
