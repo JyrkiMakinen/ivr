@@ -1,11 +1,48 @@
 1. Tecnología Web // Compatibilidad // SPA
+Descripcion del RNF: El sistema se implementara en tecnologia web para todo lo referido al manejo de llamadas, su registracion revision.
+Explicacion: Restriccion tecnica de implementacion que provoca que se deba utilizar un lenguaje de desarrollo web.
+
 2. Despliegue en la nube // Compatibilidad // SPA
+Descripcion del RNF: El sistema se implementara totalmente en la nube
+Explicacion:
+
 3. Reportes en Excel // Compatibilidad // No SPA
+Descripcion del RNF: Los reportes generados deben ser emitidos en Excel.
+Explicacion: La generación de archivos en los formatos establecidos para los reportes generados no implica un impacto arquitectónico
+en el desarrollo del producto.
+
 4. Archivos de audio // Compatibilidad // SPA
+Descripcion del RNF:
+Explicacion:
+
 5. Notificaciones SMS // Compatibilidad // SPA
+Descripcion del RNF: el sistema enviará un SMS al teléfono celular registrado del cliente, con una encuesta respecto a la atención brindada, que debe ser respondida vía otro SMS.
+Explicacion: Para implemtentar este RNF se utilizara un proceso automático que corre cada 15 minutos, estableciendo cuáles son las últimas 
+llamadas realizadas, a las cuales aún no se les ha enviado encuesta. Las llamadas seleccionadas para el envío de la encuesta pueden o no haber sido incluidas en una escucha.
+
 6. IVR con DTMF // Compatibilidad // SPA
+Descripcion del RNF: Se estableció trabajar con tecnología DTMF que decodifica la comunicación interpretando los tonos en función del 
+número marcado por el cliente
+Explicacion: 
+
 7. BD Oracle 21C // Compatibilidad // SPA
+Descripcion del RNF:La base de datos de la aplicación deberá ser en Oracle 21 c.
+Explicacion: La empresa cuenta con licencias de Oracle 21c, con lo cual deberá implementarse esta para administrar la persistencia 
+de los datos de la aplicación. Se utilizará un framework de persistencia que facilite la conexión a la misma.
+
 8. Procesamiento de llamadas (200 llamadas x min) // Eficiencia de desempeño // SPA
+Descripcion del RNF: Deben tomarse las previsiones para soportar la carga de alrededor de 200 lamadas por minuto.
+Explicacion: 
+
 9. Lenguaje de programación Java 16 // Compatibilidad // SPA
+Descripcion del RNF: El sistema se implementara con el lenguaje de programacion java version 16.
+Explicacion: Restriccion tecnica de implementacion solicitada por el cliente.
+
 10. Interfaz telefónica // Compatibilidad // SPA
+Descripcion del RNF:
+Explicacion:
+
 11. Seguridad de usuarios // Seguridad // SPA
+Descripcion del RNF: La aplicación deberá restringir el acceso a funcionalidad en función de permisos asignados a usuarios según el 
+o los roles que el usuario desempeñe en el sistema.
+Explicacion: implica desarrollar un módulo que permita autenticar usuarios y sus permisos y controlar las sesiones, que sean únicas por usuario.
