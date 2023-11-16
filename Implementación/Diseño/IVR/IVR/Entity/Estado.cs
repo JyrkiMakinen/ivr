@@ -1,13 +1,20 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace IVR.Entity
 {
     public class Estado
     {
+        // Atributos
+        [Key]
+        public int EstadoId { get; set; } // Fabricacion pura
 
-        private string nombre { get; set; }
+        public string Nombre { get; set; }
 
+
+        // Metodos
         public Estado(string nombre)
         {
-            this.nombre = nombre;
+            this.Nombre = nombre;
         }
 
         public bool esIniciada()
@@ -16,7 +23,7 @@ namespace IVR.Entity
         }
 
         public string getNombre() {
-            return nombre;
+            return Nombre;
         }
     }
 }

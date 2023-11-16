@@ -1,41 +1,55 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 
 namespace IVR.Entity
 {
     public class Llamada
     {
-        private Cliente cliente;
-        private TimeSpan duracion;
-        private bool encuestaEnviada;
-        private List<RespuestaDeCliente> respuestasCliente;
-        private List<CambioEstado> cambiosDeEstado;
+        // Atributos
+        [Key]
+        public int LlamadaId { get; set; }
 
+        [ForeignKey("Cliente")]
+        public int? ClienteId { get; set; } // Fabricacion pura
+        public Cliente Cliente { get; set; }
+
+        public TimeSpan Duracion { get; set; }
+
+        public bool EncuestaEnviada { get; set; }
+
+        public List<RespuestaDeCliente> RespuestaDeClientes { get; set; }
+
+        public List<CambioEstado> CambioEstados { get; set; }
+
+
+        // Metodos
         public Llamada(Cliente cliente, List<CambioEstado> cambiosDeEstado, List<RespuestaDeCliente> respuestasCliente, TimeSpan duracion, bool encuestaEnviada)
         {
-            this.cliente = cliente;
-            this.cambiosDeEstado = cambiosDeEstado;
-            this.respuestasCliente = respuestasCliente;
-            this.duracion = duracion;
-            this.encuestaEnviada = encuestaEnviada;
+            this.Cliente = cliente;
+            this.CambioEstados = cambiosDeEstado;
+            this.RespuestaDeClientes = respuestasCliente;
+            this.Duracion = duracion;
+            this.EncuestaEnviada = encuestaEnviada;
         }
 
         public bool tieneEncuestasRespondidas()
         {
-            return respuestasCliente.Count > 0; 
+            return RespuestaDeClientes.Count > 0; 
         }
 
         public bool esDePeriodo(DateTime fechaInicioPeriodo, DateTime fechaFinPeriodo, out CambioEstado inicial)
         {
             inicial = null;
-            for (int i = 0; i < cambiosDeEstado.Count; i++)
+            for (int i = 0; i < CambioEstados.Count; i++)
             {
-                if (cambiosDeEstado[i].esEstadoIniciada())
+                if (CambioEstados[i].esEstadoIniciada())
                 {
-                    if (cambiosDeEstado[i].getFechaHoraInicio() > fechaInicioPeriodo && cambiosDeEstado[i].getFechaHoraInicio() < fechaFinPeriodo)
+                    if (CambioEstados[i].getFechaHoraInicio() > fechaInicioPeriodo && CambioEstados[i].getFechaHoraInicio() < fechaFinPeriodo)
                     {
-                        inicial = cambiosDeEstado[i];
+                        inicial = CambioEstados[i];
                         return true;
                     }
                 }
@@ -46,16 +60,16 @@ namespace IVR.Entity
 
         public string getNombreClienteDeLlamada()
         {
-            return cliente.getNombre();
+            return Cliente.getNombre();
         }
 
         public string getEstadoActual()
         {
-            for (int i = 0; i < cambiosDeEstado.Count; i++)
+            for (int i = 0; i < CambioEstados.Count; i++)
             {
-                if (cambiosDeEstado[i].esUltimoEstado())
+                if (CambioEstados[i].esUltimoEstado())
                 {
-                    return cambiosDeEstado[i].getNombreEstado();
+                    return CambioEstados[i].getNombreEstado();
                 }
             }
             return "Not Found";
@@ -63,12 +77,12 @@ namespace IVR.Entity
 
         public TimeSpan getDuracion()
         {
-            return duracion;
+            return Duracion;
         }
 
         public void obtenerPreguntasYRespuestas(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
-            foreach (RespuestaDeCliente respCli in respuestasCliente)
+            foreach (RespuestaDeCliente respCli in RespuestaDeClientes)
             {
                 respCli.obtenerDescripcionRta(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);
             }

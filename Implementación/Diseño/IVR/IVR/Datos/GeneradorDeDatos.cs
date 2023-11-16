@@ -7,14 +7,14 @@ namespace IVR.Datos
     public class GeneradorDeDatos
     {
         // Atributos: todas las listas de todos los datos del sistema
-        private List<Estado> estados;
-        private List<CambioEstado> cambioEstados;
-        private List<Cliente> clientes;
-        private List<Encuesta> encuestas;
-        private List<Llamada> llamadas;
-        private List<Pregunta> preguntas;
-        private List<RespuestaPosible> respuestasPosibles;
-        private List<RespuestaDeCliente> respuestasDeCliente;
+        public List<Estado> estados;
+        public List<CambioEstado> cambioEstados;
+        public List<Cliente> clientes;
+        public List<Encuesta> encuestas;
+        public List<Llamada> llamadas;
+        public List<Pregunta> preguntas;
+        public List<RespuestaPosible> respuestasPosibles;
+        public List<RespuestaDeCliente> respuestasDeCliente;
 
         // Método constructor. Genera todos los datos y los a guarda en las listas.
         public GeneradorDeDatos()
