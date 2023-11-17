@@ -1,24 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace IVR.Entity
 {
     public class Encuesta
     {
-        private string descripcion;
-        private List<Pregunta> preguntas;
-        private DateTime fechaFinVigencia;
+        // Atributos
+        [Key]
+        public int EncuestaId { get; set; } // Fabricacion pura
 
+        public string Descripcion { get; set; }
+
+        public List<Pregunta> Preguntas { get; set; }
+
+        public DateTime FechaFinVigencia { get; set; }
+
+
+        // Metodos
         public Encuesta(string descripcion, List<Pregunta> preguntas, DateTime fechaFinVigencia)
         {
-            this.descripcion = descripcion;
-            this.preguntas = preguntas;
-            this.fechaFinVigencia = fechaFinVigencia;
+            this.Descripcion = descripcion;
+            this.Preguntas = preguntas;
+            this.FechaFinVigencia = fechaFinVigencia;
         }
+
+        public Encuesta() { }
 
         public bool esTuPregunta(Pregunta pregunta)
         {
-            if (preguntas.Contains(pregunta))
+            if (Preguntas.Contains(pregunta))
             {
                 return true;
             }
@@ -27,7 +38,7 @@ namespace IVR.Entity
 
         public string getDescripcionEncuesta()
         {
-            return descripcion;
+            return Descripcion;
         }
     }
 }

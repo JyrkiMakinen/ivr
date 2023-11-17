@@ -14,7 +14,7 @@ namespace IVR
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PantallaConsultarEncuesta());
+            Application.Run(new PantallaMenu());
         }
     }
 }

@@ -107,7 +107,7 @@
             this.dtpInicio.Name = "dtpInicio";
             this.dtpInicio.Size = new System.Drawing.Size(133, 27);
             this.dtpInicio.TabIndex = 2;
-            this.dtpInicio.Value = new System.DateTime(2023, 5, 28, 11, 8, 53, 0);
+            this.dtpInicio.Value = new System.DateTime(2023, 1, 28, 11, 8, 0, 0);
             this.dtpInicio.ValueChanged += new System.EventHandler(this.tomarFechaInicio);
             // 
             // dtpFin
@@ -173,6 +173,7 @@
             // cmbLlamada
             // 
             this.cmbLlamada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbLlamada.Enabled = false;
             this.cmbLlamada.FormattingEnabled = true;
             this.cmbLlamada.Location = new System.Drawing.Point(301, 90);
             this.cmbLlamada.Name = "cmbLlamada";
@@ -398,6 +399,7 @@
             this.Name = "PantallaConsultarEncuesta";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consultar Encuesta";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PantallaConsultarEncuesta_FormClosing);
             this.pnlTitulo.ResumeLayout(false);
             this.pnlTitulo.PerformLayout();
             this.pnlPeriodo.ResumeLayout(false);

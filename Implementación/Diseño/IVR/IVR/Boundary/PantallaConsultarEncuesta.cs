@@ -38,6 +38,8 @@ namespace IVR.Boundary
 
         public void tomarFechaInicio(object sender, EventArgs e)
         {
+            cmbLlamada.Enabled = true;
+
             gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value); // No está en la secuencia. Nos tomamos esta licencia para que se actualicen las llamadas si el usuario cambia la fecha inicio después de elegir la fecha fin
 
             if (cmbLlamada.Items.Count == 0)
@@ -48,6 +50,8 @@ namespace IVR.Boundary
 
         public void tomarFechaFin(object sender, EventArgs e)
         {
+            cmbLlamada.Enabled = true;
+
             gestor.tomarPeriodo(dtpInicio.Value, dtpFin.Value);
 
             if (cmbLlamada.Items.Count == 0)
@@ -102,7 +106,7 @@ namespace IVR.Boundary
             }
             else
             {
-                MessageBox.Show("Funcionalidad no implementada.", "Atención");
+                MessageBox.Show("No se detectó ninguna impresora.", "Atención");
             }
         }
 
@@ -134,6 +138,11 @@ namespace IVR.Boundary
             lblEstado.Text = "";
             lblDuracion.Text = "";
             lblEncuesta.Text = "";
+        }
+
+        private void PantallaConsultarEncuesta_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(1);
         }
     }
 }

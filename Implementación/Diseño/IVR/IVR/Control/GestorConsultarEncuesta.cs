@@ -13,12 +13,12 @@ namespace IVR.Control
 
     public class GestorConsultarEncuesta
     {
-        private DateTime fechaInicioPeriodo;
-        private DateTime fechaFinPeriodo;
-        private PantallaConsultarEncuesta pantallaConsultarEncuesta;
-        private GeneradorDeDatos generadorDeDatos;
-        private DataTable preguntasYrespuestas;
-        private string nombreCliente;
+        public DateTime fechaInicioPeriodo;
+        public DateTime fechaFinPeriodo;
+        public PantallaConsultarEncuesta pantallaConsultarEncuesta;
+        public GeneradorDeDatos generadorDeDatos;
+        public DataTable preguntasYrespuestas;
+        public string nombreCliente;
 
         public GestorConsultarEncuesta(PantallaConsultarEncuesta pantalla)
         {
@@ -127,6 +127,7 @@ namespace IVR.Control
         public void finCU()
         {
             pantallaConsultarEncuesta.Close();
+            Environment.Exit(1);
         }
 
 
