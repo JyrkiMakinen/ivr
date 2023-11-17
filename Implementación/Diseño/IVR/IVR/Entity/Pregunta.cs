@@ -26,6 +26,8 @@ namespace IVR.Entity
             this.RespuestaPosibless = respuestasPosibles;
         }
 
+        public Pregunta() { }
+
         public bool esTuRespuesta(RespuestaPosible respuesta)
         {
             if (RespuestaPosibless.Contains(respuesta))

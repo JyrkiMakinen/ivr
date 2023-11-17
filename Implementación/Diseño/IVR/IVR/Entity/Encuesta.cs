@@ -25,6 +25,8 @@ namespace IVR.Entity
             this.FechaFinVigencia = fechaFinVigencia;
         }
 
+        public Encuesta() { }
+
         public bool esTuPregunta(Pregunta pregunta)
         {
             if (Preguntas.Contains(pregunta))

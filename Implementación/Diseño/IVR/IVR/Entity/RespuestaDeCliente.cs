@@ -27,6 +27,8 @@ namespace IVR.Entity
             this.RespuestaPosible = respuestaSeleccionada;
         }
 
+        public RespuestaDeCliente() { }
+
         public void obtenerDescripcionRta(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
             RespuestaPosible.obtenerDescripcionRta(ref preguntasYrespuestas, ref descripcionEncuesta, allPreguntas, allEncuestas);

@@ -35,6 +35,8 @@ namespace IVR.Entity
             this.EncuestaEnviada = encuestaEnviada;
         }
 
+        public Llamada() { }
+
         public bool tieneEncuestasRespondidas()
         {
             return RespuestaDeClientes.Count > 0; 

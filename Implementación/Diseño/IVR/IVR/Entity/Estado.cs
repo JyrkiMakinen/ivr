@@ -17,6 +17,8 @@ namespace IVR.Entity
             this.Nombre = nombre;
         }
 
+        public Estado() { }
+
         public bool esIniciada()
         {
             return getNombre() == "Iniciada";

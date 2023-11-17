@@ -127,6 +127,7 @@ namespace IVR.Control
         public void finCU()
         {
             pantallaConsultarEncuesta.Close();
+            Environment.Exit(1);
         }
 
 

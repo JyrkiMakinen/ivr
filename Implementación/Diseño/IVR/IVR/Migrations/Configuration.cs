@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<IVR.Persistencia.IVRDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<IVR.Datos.IVRDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(IVR.Persistencia.IVRDbContext context)
+        protected override void Seed(IVR.Datos.IVRDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

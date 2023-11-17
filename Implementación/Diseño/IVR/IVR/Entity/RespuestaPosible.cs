@@ -28,6 +28,8 @@ namespace IVR.Entity
             this.Valor = valor;
         }
 
+        public RespuestaPosible() { }
+
         public void obtenerDescripcionRta(ref DataTable preguntasYrespuestas, ref string descripcionEncuesta, List<Pregunta> allPreguntas, List<Encuesta> allEncuestas)
         {
             string descPregunta = "";

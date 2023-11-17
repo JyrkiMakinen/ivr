@@ -17,6 +17,8 @@ namespace IVR.Entity
             this.Nombre = nombre;
         }
 
+        public Cliente() { }
+
         public string getNombre()
         {
             return Nombre;

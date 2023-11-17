@@ -31,6 +31,8 @@ namespace IVR.Entity
             this.Estado = estado;
         }
 
+        public CambioEstado() { }
+
         public bool esEstadoIniciada()
         {
             return Estado.esIniciada();
