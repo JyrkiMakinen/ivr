@@ -1,5 +1,6 @@
 ﻿using IVR.Boundary;
 using IVR.Datos;
+using IVR.Diseno;
 using IVR.Entity;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ using System.Text;
 namespace IVR.Control
 {
 
-    public class GestorConsultarEncuesta
+    public class GestorConsultarEncuesta : IAgregado<LlamadaDTO>
     {
         public DateTime fechaInicioPeriodo;
         public DateTime fechaFinPeriodo;
@@ -38,26 +39,36 @@ namespace IVR.Control
             buscarLlamadasConEncRespondidas();
         }
 
+        // Hook
         public void buscarLlamadasConEncRespondidas()
         {
             List<Llamada> listLlamadas = generadorDeDatos.getLlamadas();
-            List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
-            List<string> etiquetasLlamadas = new List<string>();
+            List<LlamadaDTO> listLlamadasDTO = new List<LlamadaDTO>();
             foreach (Llamada llamada in listLlamadas)
             {
-                if (llamada.tieneEncuestasRespondidas())
-                {
-                    if (llamada.esDePeriodo(fechaInicioPeriodo, fechaFinPeriodo, out CambioEstado inicial))
-                    {
-                        llamadasConEncuestasRespondidasDelPeriodo.Add(llamada);
+                listLlamadasDTO.Add(new LlamadaDTO(llamada, ""));
+            }
 
-                        string etiqueta = llamada.getNombreClienteDeLlamada() + " - " + inicial.getFechaHoraInicio().ToString();
-                        etiquetasLlamadas.Add(etiqueta);
-                    }
+            IIterator<LlamadaDTO> iterator = crearIterator(listLlamadasDTO, fechaInicioPeriodo, fechaFinPeriodo);
+
+            List<Llamada> llamadasConEncuestasRespondidasDelPeriodo = new List<Llamada>();
+            List<string> etiquetasLlamadas = new List<string>();
+
+            iterator.primero();
+            while (!iterator.haTerminado())
+            {
+                if (iterator.actual() != null)
+                {
+                    llamadasConEncuestasRespondidasDelPeriodo.Add(iterator.actual().Llamada);
+                    etiquetasLlamadas.Add(iterator.actual().Etiqueta);
                 }
-            } 
+                iterator.siguiente();
+            }
+
             pantallaConsultarEncuesta.solicitarSeleccionLlamada(llamadasConEncuestasRespondidasDelPeriodo, etiquetasLlamadas);
         }
+
+        public IIterator<LlamadaDTO> crearIterator(List<LlamadaDTO> elementos, params object[] filtros) { return new IteratorLlamadas(elementos, filtros); }
 
         public void tomarSeleccionLlamada(Llamada llamadaSeleccionada)
         {

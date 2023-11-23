@@ -70,6 +70,10 @@
     </Compile>
     <Compile Include="Control\GestorConsultarEncuesta.cs" />
     <Compile Include="Datos\GeneradorDeDatos.cs" />
+    <Compile Include="Diseno\IAgregado.cs" />
+    <Compile Include="Diseno\IIterator.cs" />
+    <Compile Include="Diseno\IteratorLlamadas.cs" />
+    <Compile Include="Diseno\LlamadaDTO.cs" />
     <Compile Include="Entity\CambioEstado.cs" />
     <Compile Include="Entity\Cliente.cs" />
     <Compile Include="Entity\Encuesta.cs" />
@@ -125,9 +129,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistencia\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
